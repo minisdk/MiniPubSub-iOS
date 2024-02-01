@@ -10,15 +10,10 @@ import Foundation
 @objc public class SwiftSide : NSObject{
 
     private let bridgeNode : BridgeNode
-    private let sampleNode : SampleNode
     
     @objc public init(callback: SwiftCallback){
         bridgeNode = BridgeNode(callback: callback)
         MessageManager.shared.add(receiver: bridgeNode)
-        
-        // sample test code
-        sampleNode = SampleNode()
-        MessageManager.shared.add(receiver: sampleNode)
     }
     
     @objc public func send(data: String){

@@ -7,16 +7,16 @@
 
 import Foundation
 
-public class FilterNode : PublishingNode{
+open class FilterNode : PublishingNode{
     
     private var handlerMap : [String : (MessageHolder) -> ()] = [:]
     
-    override init() {
+    public override init() {
         super.init()
         handlerMap = onInitialize()
     }
     
-    public func onInitialize() -> [String : (MessageHolder) -> ()]{
+    open func onInitialize() -> [String : (MessageHolder) -> ()]{
         return [:]
     }
     

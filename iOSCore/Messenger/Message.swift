@@ -6,8 +6,12 @@
 //
 
 import Foundation
-
-	public struct Message{
-    public var type : String
-    public var data : String
+public struct Message{
+    public let type : String
+    public let data : String
+    
+    public init(type: String, data: String) {
+        self.type = type
+        self.data = data
+    }
 }

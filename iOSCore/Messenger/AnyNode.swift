@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AnyNode : PublishingNode{
+open class AnyNode : PublishingNode{
     private let ReceiveAny = ".ReceiveAny"
     
     override public func getReceivingMessageTypes() -> [String] {

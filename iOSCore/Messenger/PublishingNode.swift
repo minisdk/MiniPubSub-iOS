@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class PublishingNode : MessageNode{
+open class PublishingNode : MessageNode{
     
     private class IDConuter{
         public static let shared = IDConuter()
