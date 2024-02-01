@@ -13,6 +13,7 @@ class MessageMediatorImpl : MessageMediator{
     
     private var receiverMap : [String : [any MessageNode]]  = [:]
     private var receiveAny : [any MessageNode] = []
+    private var allReceivers : [any MessageNode] = []
     
     func add(receiver: MessageNode) {
         let messageTypes = receiver.getReceivingMessageTypes()
@@ -30,6 +31,7 @@ class MessageMediatorImpl : MessageMediator{
                 }
             }
         }
+        allReceivers.append(receiver)
     }
     
     func add(receiver: MessageNode, type: String) {
@@ -41,8 +43,8 @@ class MessageMediatorImpl : MessageMediator{
         }
     }
     
-    func notify(message: Message, notifier: MessageNode) {
-        let holder = MessagePostman(message, notifier)
+    func notify(message: Message, notifier: PublishingNode) {
+        let holder = MessagePostman(message, linkReceiver(notifier))
         if receiverMap.contains(where: { (key, _) in key == message.type }){
             receiverMap[message.type]?.forEach({ receiver in
                 if receiver.id != notifier.id{
@@ -57,12 +59,19 @@ class MessageMediatorImpl : MessageMediator{
         }
     }
     
-    func notify(message: Message, notifier: MessageNode, receiver: MessageNode) {
-        let holder = MessagePostman(message, notifier)
+    func notify(message: Message, notifier: PublishingNode, receiver: Receivable) {
+        let holder = MessagePostman(message, linkReceiver(notifier))
         receiver.onReceive(holder)
     }
     
-    func giveBack(message: Message, giveBacked: MessageNode) {
+    private func linkReceiver(_ notifier: PublishingNode) -> Receivable?{
+        let receiver = allReceivers.first { node in
+            node.id == notifier.id
+        }
+        return receiver
+    }
+    
+    func giveBack(message: Message, giveBacked: Receivable) {
         let holder = MessagePostman(message, nil)
         giveBacked.onReceive(holder)
     }

@@ -6,33 +6,25 @@
 //
 
 import Foundation
+import UIKit
 
-open class FilterNode : PublishingNode{
+public protocol Selectable{
+    var handlers: [String:(MessageHolder) -> ()] {get}
+}
+
+public class FilterNode : MessageNode{
+    private let messageSelector : Selectable
     
-    private var handlerMap : [String : (MessageHolder) -> ()] = [:]
-    
-    public override init() {
-        super.init()
-        handlerMap = onInitialize()
+    public init(messageSelector: Selectable) {
+        self.messageSelector = messageSelector
     }
     
-    open func onInitialize() -> [String : (MessageHolder) -> ()]{
-        return [:]
+    public func getReceivingMessageTypes() -> [String] {
+        return Array(messageSelector.handlers.keys)
     }
     
-    public override func getReceivingMessageTypes() -> [String] {
-        return Array(handlerMap.keys)
-    }
-    
-    public override func onReceive(_ messageHolder: MessageHolder) {
-        print("FilterNode... "  + messageHolder.message.data)
-        let handler = handlerMap[messageHolder.message.type]
+    public func onReceive(_ messageHolder: MessageHolder) {
+        let handler = messageSelector.handlers[messageHolder.message.type]
         handler?(messageHolder)
     }
-    
-    public func addMessageHandler(messageType: String, handler: @escaping (MessageHolder) -> ()){
-        handlerMap[messageType] = handler
-        MessageManager.shared.mediator.add(receiver: self, type: messageType)
-    }
-    
 }

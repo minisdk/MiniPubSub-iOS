@@ -9,10 +9,11 @@ import Foundation
 
 @objc public class SwiftSide : NSObject{
 
-    private let bridgeNode : BridgeNode
+    private let bridgeNode : AnyNode
     
     @objc public init(callback: SwiftCallback){
-        bridgeNode = BridgeNode(callback: callback)
+        let consumer = BridgeConsumer(callback: callback)
+        bridgeNode = AnyNode(messageConsumer: consumer)
         MessageManager.shared.add(receiver: bridgeNode)
     }
     

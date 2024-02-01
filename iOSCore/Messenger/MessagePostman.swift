@@ -9,20 +9,20 @@ import Foundation
 
 class MessagePostman : MessageHolder{
     
-    init(_ message: Message, _ notifier: MessageNode?) {
+    init(_ message: Message, _ messageHost: Receivable?) {
         self.message = message
-        self.notifier = notifier
+        self.host = messageHost
     }
     convenience init(_ message: Message){
         self.init(message, nil)
     }
     
     let message: Message
-    private let notifier: MessageNode?
+    private let host: Receivable?
     
     func giveBack(message: Message) {
-        if(notifier != nil){
-            MessageManager.shared.mediator.giveBack(message: message, giveBacked: notifier!)
+        if(host != nil){
+            MessageManager.shared.mediator.giveBack(message: message, giveBacked: host!)
         }
     }
 }

@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		C49F995B2B5A4F0600047CAA /* MessagePostman.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995A2B5A4F0600047CAA /* MessagePostman.swift */; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
-		C49F995F2B5A5D5100047CAA /* BridgeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995E2B5A5D5100047CAA /* BridgeNode.swift */; };
+		C49F995F2B5A5D5100047CAA /* BridgeConsumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995E2B5A5D5100047CAA /* BridgeConsumer.swift */; };
 		C49F99612B5B56B400047CAA /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99602B5B56B400047CAA /* AnyNode.swift */; };
-		C49F99632B5B6E0E00047CAA /* PublishingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99622B5B6E0E00047CAA /* PublishingNode.swift */; };
 		C49F99652B5B7B1400047CAA /* SwiftSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* SwiftSide.swift */; };
 		C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F99682B5B7EF000047CAA /* ObjcSide.m */; };
 		C49F99902B5CB1BF00047CAA /* FilterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F998F2B5CB1BF00047CAA /* FilterNode.swift */; };
@@ -27,9 +26,8 @@
 /* Begin PBXFileReference section */
 		C49F995A2B5A4F0600047CAA /* MessagePostman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePostman.swift; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
-		C49F995E2B5A5D5100047CAA /* BridgeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeNode.swift; sourceTree = "<group>"; };
+		C49F995E2B5A5D5100047CAA /* BridgeConsumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConsumer.swift; sourceTree = "<group>"; };
 		C49F99602B5B56B400047CAA /* AnyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyNode.swift; sourceTree = "<group>"; };
-		C49F99622B5B6E0E00047CAA /* PublishingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishingNode.swift; sourceTree = "<group>"; };
 		C49F99642B5B7B1400047CAA /* SwiftSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSide.swift; sourceTree = "<group>"; };
 		C49F99672B5B7E9900047CAA /* ObjcSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcSide.h; sourceTree = "<group>"; };
 		C49F99682B5B7EF000047CAA /* ObjcSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcSide.m; sourceTree = "<group>"; };
@@ -85,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B08F562B5A3EAE0082917E /* iOSCoreBridge.mm */,
-				C49F995E2B5A5D5100047CAA /* BridgeNode.swift */,
+				C49F995E2B5A5D5100047CAA /* BridgeConsumer.swift */,
 				C49F99642B5B7B1400047CAA /* SwiftSide.swift */,
 				C49F99672B5B7E9900047CAA /* ObjcSide.h */,
 				C49F99682B5B7EF000047CAA /* ObjcSide.m */,
@@ -104,7 +102,6 @@
 				C49F995A2B5A4F0600047CAA /* MessagePostman.swift */,
 				C49F995C2B5A508200047CAA /* MessageManager.swift */,
 				C49F99602B5B56B400047CAA /* AnyNode.swift */,
-				C49F99622B5B6E0E00047CAA /* PublishingNode.swift */,
 				C49F998F2B5CB1BF00047CAA /* FilterNode.swift */,
 			);
 			path = Messenger;
@@ -193,9 +190,8 @@
 				C4B08F572B5A3EAE0082917E /* iOSCoreBridge.mm in Sources */,
 				C4B08F5F2B5A46D00082917E /* MessageHolder.swift in Sources */,
 				C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */,
-				C49F995F2B5A5D5100047CAA /* BridgeNode.swift in Sources */,
+				C49F995F2B5A5D5100047CAA /* BridgeConsumer.swift in Sources */,
 				C4B08F5D2B5A467E0082917E /* Message.swift in Sources */,
-				C49F99632B5B6E0E00047CAA /* PublishingNode.swift in Sources */,
 				C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */,
 				C49F995B2B5A4F0600047CAA /* MessagePostman.swift in Sources */,
 				C49F99612B5B56B400047CAA /* AnyNode.swift in Sources */,

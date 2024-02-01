@@ -7,10 +7,30 @@
 
 import Foundation
 
-public protocol MessageNode{
-    var id: Int {get}
-    func notify(_ message: Message)
-    func notify(_ message: Message, _ target: any MessageNode)
+public protocol Receivable{
     func getReceivingMessageTypes() -> [String]
     func onReceive(_ messageHolder: MessageHolder)
 }
+
+public class PublishingNode{
+    
+    private class IDConuter{
+        public static let shared = IDConuter()
+        private var id = 0
+        public func getID() -> Int{
+            id+=1
+            return id
+        }
+    }
+    
+    public let id: Int = IDConuter.shared.getID()
+    
+    public func notify(_ message: Message){
+        MessageManager.shared.mediator.notify(message: message, notifier: self)
+    }
+    public func notify(_ message: Message, _ target: any Receivable){
+        MessageManager.shared.mediator.notify(message: message, notifier: self, receiver: target)
+    }
+}
+
+public typealias MessageNode = PublishingNode & Receivable
