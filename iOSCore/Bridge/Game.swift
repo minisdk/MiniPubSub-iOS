@@ -11,7 +11,7 @@ import Foundation
     func fromSwift(data: String)
 }
 
-@objc public class SwiftSide : NSObject{
+@objc public class Game : NSObject{
 
     private let collector : MessageCollector
     private let callback : SwiftCallback

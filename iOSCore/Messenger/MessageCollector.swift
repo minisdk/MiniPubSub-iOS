@@ -7,11 +7,7 @@
 
 import Foundation
 
-//protocol Consumable{
-//    func onConsume(messageHolder: MessageHolder)
-//}
-
-public class MessageCollector : MessageNode{
+public final class MessageCollector : MessageNode{
     private var handler : ((MessageHolder) -> ())?
     
     public override init() {

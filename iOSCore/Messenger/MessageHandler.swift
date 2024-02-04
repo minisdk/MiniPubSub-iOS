@@ -7,26 +7,23 @@
 
 import Foundation
 
-//public protocol Selectable{
-//    var handlers: [String:(MessageHolder) -> ()] {get}
-//}
-
-public class MessageHandler : MessageNode{
+public final class MessageHandler : MessageNode{
     
-    private var andlerMap : [String:(MessageHolder) -> ()]
+    private var handlerMap : [String:(MessageHolder) -> ()]
     
     public override init() {
-        andlerMap = [:]
+        handlerMap = [:]
         super.init()
+        MessageManager.shared.mediator.register(node: self)
     }
     
     public func onReceive(_ messageHolder: MessageHolder) {
-        let listener = andlerMap[messageHolder.message.type]
+        let listener = handlerMap[messageHolder.message.type]
         listener?(messageHolder)
     }
     
     public func setHandler(type: String, handler : @escaping (MessageHolder) -> ()){
-        andlerMap[type] = handler
+        handlerMap[type] = handler
         MessageManager.shared.mediator.registerType(node: self, type: type)
     }
 }

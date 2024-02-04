@@ -20,6 +20,7 @@ class SampleKit{
     
     func onTest(holder: MessageHolder){
         print("onTest : " + holder.message.data);
+        handler.notify(Message(type: "native", data: "this is iOS message :D"))
     }
     func onTestRecall(holder: MessageHolder){
         print("onTestRecall : " + holder.message.data);

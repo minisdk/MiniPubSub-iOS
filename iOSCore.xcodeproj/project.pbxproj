@@ -10,7 +10,7 @@
 		C49F995B2B5A4F0600047CAA /* MessagePostman.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995A2B5A4F0600047CAA /* MessagePostman.swift */; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
 		C49F99612B5B56B400047CAA /* MessageCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99602B5B56B400047CAA /* MessageCollector.swift */; };
-		C49F99652B5B7B1400047CAA /* SwiftSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* SwiftSide.swift */; };
+		C49F99652B5B7B1400047CAA /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* Game.swift */; };
 		C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F99682B5B7EF000047CAA /* ObjcSide.m */; };
 		C49F99902B5CB1BF00047CAA /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F998F2B5CB1BF00047CAA /* MessageHandler.swift */; };
 		C4B08F4F2B5A3E7A0082917E /* iOSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C4B08F4E2B5A3E7A0082917E /* iOSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,7 +26,7 @@
 		C49F995A2B5A4F0600047CAA /* MessagePostman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePostman.swift; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C49F99602B5B56B400047CAA /* MessageCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollector.swift; sourceTree = "<group>"; };
-		C49F99642B5B7B1400047CAA /* SwiftSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSide.swift; sourceTree = "<group>"; };
+		C49F99642B5B7B1400047CAA /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C49F99672B5B7E9900047CAA /* ObjcSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcSide.h; sourceTree = "<group>"; };
 		C49F99682B5B7EF000047CAA /* ObjcSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcSide.m; sourceTree = "<group>"; };
 		C49F998F2B5CB1BF00047CAA /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B08F562B5A3EAE0082917E /* iOSCoreBridge.mm */,
-				C49F99642B5B7B1400047CAA /* SwiftSide.swift */,
+				C49F99642B5B7B1400047CAA /* Game.swift */,
 				C49F99672B5B7E9900047CAA /* ObjcSide.h */,
 				C49F99682B5B7EF000047CAA /* ObjcSide.m */,
 			);
@@ -194,7 +194,7 @@
 				C49F99902B5CB1BF00047CAA /* MessageHandler.swift in Sources */,
 				C4B08F662B5A4A270082917E /* MessageMediatorImpl.swift in Sources */,
 				C4B08F612B5A47520082917E /* MessageNode.swift in Sources */,
-				C49F99652B5B7B1400047CAA /* SwiftSide.swift in Sources */,
+				C49F99652B5B7B1400047CAA /* Game.swift in Sources */,
 				C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

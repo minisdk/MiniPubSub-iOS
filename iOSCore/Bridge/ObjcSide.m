@@ -21,7 +21,7 @@
 }
 
 - (void)initializeWith:(NativeMessageCallback)bridgeCallback {
-    swiftSide = [[SwiftSide alloc] initWithCallback:self];
+    swiftSide = [[Game alloc] initWithCallback:self];
     
     self->messageCallback = bridgeCallback;
     self->messageCallback("ios native - init complete");
