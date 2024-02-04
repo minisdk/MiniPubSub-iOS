@@ -16,7 +16,8 @@ public class MessageCollector : MessageNode{
     
     public override init() {
         super.init()
-        MessageManager.shared.add(receiver: self)
+        MessageManager.shared.register(node: self)
+        MessageManager.shared.registerType(node: self,type:"$.ReceiveAny")
     }
     
     public func onReceive(_ messageHolder: MessageHolder) {

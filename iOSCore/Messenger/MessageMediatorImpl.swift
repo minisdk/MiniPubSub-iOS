@@ -19,11 +19,10 @@ class MessageMediatorImpl : MessageMediator{
     }
     
     func register(node: MessageNode) {
-        nodeFilter[ReceiveAny]?.append(node)
         nodeMap[node.id] = node
     }
     
-    func register(node: MessageNode, type: String) {
+    func registerType(node: MessageNode, type: String) {
         if nodeFilter.contains(where: { (key, _) in key == type }){
             nodeFilter[type]?.append(node)
         }
@@ -32,7 +31,7 @@ class MessageMediatorImpl : MessageMediator{
         }
     }
     
-    func notify(message: Message, notifier: PublishingNode) {
+    func notify(message: Message, notifier: Notifier) {
         let holder = MessagePostman(message, linkReceiver(notifier))
         if nodeFilter.contains(where: { (key, _) in key == message.type }){
             nodeFilter[message.type]?.forEach({ receiver in
@@ -48,12 +47,12 @@ class MessageMediatorImpl : MessageMediator{
         }
     }
     
-    func notify(message: Message, notifier: PublishingNode, receiver: Receivable) {
+    func notify(message: Message, notifier: Notifier, receiver: Receivable) {
         let holder = MessagePostman(message, linkReceiver(notifier))
         receiver.onReceive(holder)
     }
     
-    private func linkReceiver(_ notifier: PublishingNode) -> Receivable?{
+    private func linkReceiver(_ notifier: Notifier) -> Receivable?{
         return nodeMap[notifier.id]
     }
     

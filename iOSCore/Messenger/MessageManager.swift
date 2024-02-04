@@ -16,7 +16,10 @@ public class MessageManager{
     
     let mediator : MessageMediator
     
-    public func add(receiver: MessageNode){
-        mediator.register(node: receiver)
+    public func register(node: MessageNode){
+        mediator.register(node: node)
+    }
+    public func registerType(node: MessageNode, type:String){
+        mediator.registerType(node: node, type: type)
     }
 }

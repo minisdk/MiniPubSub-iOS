@@ -11,7 +11,7 @@ public protocol Receivable{
     func onReceive(_ messageHolder: MessageHolder)
 }
 
-public class PublishingNode{
+public class Notifier{
     
     private class IDConuter{
         public static let shared = IDConuter()
@@ -32,4 +32,4 @@ public class PublishingNode{
     }
 }
 
-public typealias MessageNode = PublishingNode & Receivable
+public typealias MessageNode = Notifier & Receivable

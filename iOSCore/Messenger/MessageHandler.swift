@@ -27,6 +27,6 @@ public class MessageHandler : MessageNode{
     
     public func setHandler(type: String, handler : @escaping (MessageHolder) -> ()){
         andlerMap[type] = handler
-        MessageManager.shared.mediator.register(node: self, type: type)
+        MessageManager.shared.mediator.registerType(node: self, type: type)
     }
 }
