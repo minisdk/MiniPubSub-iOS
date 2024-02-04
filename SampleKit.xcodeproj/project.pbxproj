@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C49F99F42B6A368D00047CAA /* SampleKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C49F99F32B6A368D00047CAA /* SampleKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C49F9A0C2B6A393E00047CAA /* iOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49F9A0B2B6A393E00047CAA /* iOSCore.framework */; };
-		C49F9A102B6A3BC800047CAA /* SampleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F9A0F2B6A3A6000047CAA /* SampleSelector.swift */; };
+		C49F9A102B6A3BC800047CAA /* SampleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F9A0F2B6A3A6000047CAA /* SampleKit.swift */; };
 		C49F9A122B6A3F8100047CAA /* OnModuleLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F9A112B6A3F8100047CAA /* OnModuleLoad.m */; };
 		C49F9A162B6A411D00047CAA /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F9A152B6A411D00047CAA /* Loader.swift */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		C49F99F32B6A368D00047CAA /* SampleKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleKit.h; sourceTree = "<group>"; };
 		C49F9A092B6A391F00047CAA /* SampleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SampleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49F9A0B2B6A393E00047CAA /* iOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C49F9A0F2B6A3A6000047CAA /* SampleSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleSelector.swift; sourceTree = "<group>"; };
+		C49F9A0F2B6A3A6000047CAA /* SampleKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleKit.swift; sourceTree = "<group>"; };
 		C49F9A112B6A3F8100047CAA /* OnModuleLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnModuleLoad.m; sourceTree = "<group>"; };
 		C49F9A152B6A411D00047CAA /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,7 +47,7 @@
 		C49F99F22B6A368D00047CAA /* SampleKit */ = {
 			isa = PBXGroup;
 			children = (
-				C49F9A0F2B6A3A6000047CAA /* SampleSelector.swift */,
+				C49F9A0F2B6A3A6000047CAA /* SampleKit.swift */,
 				C49F99F32B6A368D00047CAA /* SampleKit.h */,
 				C49F9A112B6A3F8100047CAA /* OnModuleLoad.m */,
 				C49F9A152B6A411D00047CAA /* Loader.swift */,
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C49F9A122B6A3F8100047CAA /* OnModuleLoad.m in Sources */,
-				C49F9A102B6A3BC800047CAA /* SampleSelector.swift in Sources */,
+				C49F9A102B6A3BC800047CAA /* SampleKit.swift in Sources */,
 				C49F9A162B6A411D00047CAA /* Loader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

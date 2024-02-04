@@ -17,6 +17,6 @@ public class MessageManager{
     let mediator : MessageMediator
     
     public func add(receiver: MessageNode){
-        mediator.add(receiver: receiver)
+        mediator.register(node: receiver)
     }
 }

@@ -9,50 +9,39 @@ import Foundation
 
 class MessageMediatorImpl : MessageMediator{
     
-    private let ReceiveAny = ".ReceiveAny"
+    private let ReceiveAny = "$.ReceiveAny"
     
-    private var receiverMap : [String : [any MessageNode]]  = [:]
-    private var receiveAny : [any MessageNode] = []
-    private var allReceivers : [any MessageNode] = []
+    private var nodeFilter : [String : [any MessageNode]]
+    private var nodeMap : [Int : MessageNode] = [:]
     
-    func add(receiver: MessageNode) {
-        let messageTypes = receiver.getReceivingMessageTypes()
-        for type in messageTypes{
-            if type == ReceiveAny{
-                receiveAny.append(receiver)
-                break
-            }
-            else{
-                if receiverMap.contains(where: { (key, _) in key == type }){
-                    receiverMap[type]?.append(receiver)
-                }
-                else{
-                    receiverMap[type] = [receiver]
-                }
-            }
-        }
-        allReceivers.append(receiver)
+    init(){
+        nodeFilter = [ReceiveAny:[]]
     }
     
-    func add(receiver: MessageNode, type: String) {
-        if receiverMap.contains(where: { (key, _) in key == type }){
-            receiverMap[type]?.append(receiver)
+    func register(node: MessageNode) {
+        nodeFilter[ReceiveAny]?.append(node)
+        nodeMap[node.id] = node
+    }
+    
+    func register(node: MessageNode, type: String) {
+        if nodeFilter.contains(where: { (key, _) in key == type }){
+            nodeFilter[type]?.append(node)
         }
         else{
-            receiverMap[type] = [receiver]
+            nodeFilter[type] = [node]
         }
     }
     
     func notify(message: Message, notifier: PublishingNode) {
         let holder = MessagePostman(message, linkReceiver(notifier))
-        if receiverMap.contains(where: { (key, _) in key == message.type }){
-            receiverMap[message.type]?.forEach({ receiver in
+        if nodeFilter.contains(where: { (key, _) in key == message.type }){
+            nodeFilter[message.type]?.forEach({ receiver in
                 if receiver.id != notifier.id{
                     receiver.onReceive(holder)
                 }
             })
         }
-        receiveAny.forEach { receiver in
+        nodeFilter[ReceiveAny]?.forEach { receiver in
             if receiver.id != notifier.id{
                 receiver.onReceive(holder)
             }
@@ -65,10 +54,7 @@ class MessageMediatorImpl : MessageMediator{
     }
     
     private func linkReceiver(_ notifier: PublishingNode) -> Receivable?{
-        let receiver = allReceivers.first { node in
-            node.id == notifier.id
-        }
-        return receiver
+        return nodeMap[notifier.id]
     }
     
     func giveBack(message: Message, giveBacked: Receivable) {

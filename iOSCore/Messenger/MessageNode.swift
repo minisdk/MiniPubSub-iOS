@@ -8,7 +8,6 @@
 import Foundation
 
 public protocol Receivable{
-    func getReceivingMessageTypes() -> [String]
     func onReceive(_ messageHolder: MessageHolder)
 }
 

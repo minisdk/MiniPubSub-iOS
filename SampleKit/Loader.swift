@@ -10,8 +10,6 @@ import iOSCore
 
 @objc public class Loader : NSObject{
     @objc public static func loadModule(){
-        let selector = SampleSelector()
-        let node = FilterNode(messageSelector: selector)
-        MessageManager.shared.add(receiver: node)
+        let node = SampleKit()
     }
 }

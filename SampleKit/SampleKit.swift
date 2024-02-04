@@ -8,13 +8,15 @@
 import Foundation
 import iOSCore
 
-class SampleSelector : Selectable{
-    var handlers: [String : (MessageHolder) -> ()] = [:]
+class SampleKit{
+    
+    let handler: MessageHandler
     
     init() {
-        self.handlers =  ["test" : onTest, "testRecall":onTestRecall]
+        handler = MessageHandler()
+        handler.setHandler(type: "test", handler: onTest)
+        handler.setHandler(type: "testRecall", handler: onTestRecall)
     }
-    
     
     func onTest(holder: MessageHolder){
         print("onTest : " + holder.message.data);
