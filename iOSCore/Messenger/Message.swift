@@ -7,11 +7,11 @@
 
 import Foundation
 public struct Message{
-    public let type : String
+    public let key : String
     public let data : String
     
-    public init(type: String, data: String) {
-        self.type = type
+    public init(key: String, data: String) {
+        self.key = key
         self.data = data
     }
 }

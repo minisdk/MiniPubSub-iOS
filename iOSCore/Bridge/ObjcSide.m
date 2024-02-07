@@ -21,14 +21,14 @@
 }
 
 - (void)initializeWith:(NativeMessageCallback)bridgeCallback {
-    swiftSide = [[Game alloc] initWithCallback:self];
+    game = [[Game alloc] initWithCallback:self];
     
     self->messageCallback = bridgeCallback;
     self->messageCallback("ios native - init complete");
 }
 - (void)sendToNative:(NSString *)data{
     NSLog(@"from unity message : %@", data);
-    [swiftSide sendWithData:data];
+    [game sendWithData:data];
 }
 
 //- (void)sendToGame:(NSString *)data {

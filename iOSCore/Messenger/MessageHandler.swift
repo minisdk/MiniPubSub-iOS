@@ -11,19 +11,22 @@ public final class MessageHandler : MessageNode{
     
     private var handlerMap : [String:(MessageHolder) -> ()]
     
-    public override init() {
+    public override init(tag: Tag) {
         handlerMap = [:]
-        super.init()
+        super.init(tag: tag)
         MessageManager.shared.mediator.register(node: self)
     }
     
+    public func hasKey(key: String) -> Bool {
+        return handlerMap.keys.contains(key)
+    }
+    
     public func onReceive(_ messageHolder: MessageHolder) {
-        let listener = handlerMap[messageHolder.message.type]
+        let listener = handlerMap[messageHolder.message.key]
         listener?(messageHolder)
     }
     
-    public func setHandler(type: String, handler : @escaping (MessageHolder) -> ()){
-        handlerMap[type] = handler
-        MessageManager.shared.mediator.registerType(node: self, type: type)
+    public func setHandler(key: String, handler : @escaping (MessageHolder) -> ()){
+        handlerMap[key] = handler
     }
 }

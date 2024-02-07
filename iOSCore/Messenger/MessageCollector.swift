@@ -10,12 +10,14 @@ import Foundation
 public final class MessageCollector : MessageNode{
     private var handler : ((MessageHolder) -> ())?
     
-    public override init() {
-        super.init()
+    public override init(tag: Tag) {
+        super.init(tag: tag)
         MessageManager.shared.register(node: self)
-        MessageManager.shared.registerType(node: self,type:"$.ReceiveAny")
     }
     
+    public func hasKey(key: String) -> Bool{
+        return true
+    }
     public func onReceive(_ messageHolder: MessageHolder) {
         self.handler?(messageHolder)
     }

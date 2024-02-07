@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol Receivable{
+    func hasKey(key: String) -> Bool
     func onReceive(_ messageHolder: MessageHolder)
 }
 
@@ -23,12 +24,14 @@ public class Notifier{
     }
     
     public let id: Int = IDConuter.shared.getID()
+    public let tag: Tag
     
-    public func notify(_ message: Message){
-        MessageManager.shared.mediator.notify(message: message, notifier: self)
+    init(tag: Tag = Tag.native) {
+        self.tag = tag
     }
-    public func notify(_ message: Message, _ target: any Receivable){
-        MessageManager.shared.mediator.notify(message: message, notifier: self, receiver: target)
+    
+    public func notify(message: Message, tag: Tag){
+        MessageManager.shared.mediator.notify(message: message, tag: tag, notifier: self)
     }
 }
 

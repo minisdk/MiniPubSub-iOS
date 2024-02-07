@@ -19,7 +19,4 @@ public class MessageManager{
     public func register(node: MessageNode){
         mediator.register(node: node)
     }
-    public func registerType(node: MessageNode, type:String){
-        mediator.registerType(node: node, type: type)
-    }
 }

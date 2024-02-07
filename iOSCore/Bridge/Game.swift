@@ -18,19 +18,19 @@ import Foundation
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        collector = MessageCollector()
+        collector = MessageCollector(tag: Tag.game)
         super.init()
         collector.setHandler(handler: onListen)
     }
     
     @objc public func send(data: String){
         print("SwiftSide : "  + data)
-        collector.notify(toMessage(data: data))
+        collector.notify(message: toMessage(data: data), tag: Tag.native)
     }
     
     private func toMessage(data: String) -> Message{
         let splited = data.split(separator: "|")
-        let message = Message(type: String(splited[0]), data: String(splited[1]))
+        let message = Message(key: String(splited[0]), data: String(splited[1]))
         return message
     }
     
@@ -40,7 +40,7 @@ import Foundation
     }
     
     private func toData(message : Message) -> String{
-        let data = String(format: "%@|%@", message.type, message.data)
+        let data = String(format: "%@|%@", message.key, message.data)
         return data;
     }
     

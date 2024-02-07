@@ -13,18 +13,18 @@ class SampleKit{
     let handler: MessageHandler
     
     init() {
-        handler = MessageHandler()
-        handler.setHandler(type: "test", handler: onTest)
-        handler.setHandler(type: "testRecall", handler: onTestRecall)
+        handler = MessageHandler(tag: Tag.native)
+        handler.setHandler(key: "test", handler: onTest)
+        handler.setHandler(key: "testRecall", handler: onTestRecall)
     }
     
     func onTest(holder: MessageHolder){
         print("onTest : " + holder.message.data);
-        handler.notify(Message(type: "native", data: "this is iOS message :D"))
+        handler.notify(message: Message(key: "native", data: "this is iOS message :D"), tag: Tag.game)
     }
     func onTestRecall(holder: MessageHolder){
         print("onTestRecall : " + holder.message.data);
-        holder.giveBack(message: Message(type:"testReturn", data:"RECALL iOS => " + holder.message.data))
+        holder.giveBack(message: Message(key:"testReturn", data:"RECALL iOS => " + holder.message.data))
     }
     
     

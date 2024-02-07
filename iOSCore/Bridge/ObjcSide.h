@@ -18,7 +18,7 @@ typedef void (*NativeMessageCallback)(const char* data);
 @interface ObjcSide : NSObject<SwiftCallback>
 {
     NativeMessageCallback messageCallback;
-    Game* swiftSide;
+    Game* game;
 }
 
 +(instancetype) sharedInstance;
