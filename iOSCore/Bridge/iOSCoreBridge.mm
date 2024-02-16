@@ -10,13 +10,13 @@
 
 extern "C"
 {
-    void __iOSInitialize(NativeMessageCallback unityCallback)
+    void __iOSInitialize(NativeDataCallback unityCallback)
     {
         [[ObjcSide sharedInstance] initializeWith:unityCallback];
     }
 
-    void __iOSSend(const char* message, int nonce)
+    void __iOSSend(const Byte* bytes, int length)
     {
-        [[ObjcSide sharedInstance] sendToNative:[NSString stringWithUTF8String:message]];
+        [[ObjcSide sharedInstance] sendToNative:bytes withLength:length];
     }
 }

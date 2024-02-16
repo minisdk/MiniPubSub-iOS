@@ -20,23 +20,18 @@
     return shard;
 }
 
-- (void)initializeWith:(NativeMessageCallback)bridgeCallback {
+- (void)initializeWith:(NativeDataCallback)bridgeCallback {
     game = [[Game alloc] initWithCallback:self];
     
-    self->messageCallback = bridgeCallback;
-    self->messageCallback("ios native - init complete");
-}
-- (void)sendToNative:(NSString *)data{
-    NSLog(@"from unity message : %@", data);
-    [game sendWithData:data];
+    self->dataCallback = bridgeCallback;
 }
 
-//- (void)sendToGame:(NSString *)data {
-//    self->messageCallback([data UTF8String]);
-//}
-
-- (void)fromSwiftWithData:(NSString *)data{
-    self->messageCallback([data UTF8String]);
+- (void)sendToNative:(const Byte *)data withLength:(int)length{
+    NSData *nsData = [NSData dataWithBytes:data length:length];
+    [game sendWithData:nsData];
 }
 
+- (void)fromSwiftWithData:(NSData *)data{
+    self->dataCallback([data bytes], (int)data.length);
+}
 @end

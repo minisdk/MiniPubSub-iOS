@@ -10,22 +10,22 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (*NativeMessageCallback)(const char* data);
+//typedef void (*NativeMessageCallback)(const char* data);
+typedef void (*NativeDataCallback)(const Byte* data, int length);
 
 @class Game;
 @protocol SwiftCallback;
 
 @interface ObjcSide : NSObject<SwiftCallback>
 {
-    NativeMessageCallback messageCallback;
+    NativeDataCallback dataCallback;
     Game* game;
 }
 
 +(instancetype) sharedInstance;
 
--(void) initializeWith : (NativeMessageCallback) bridgeCallback;
--(void) sendToNative : (NSString*) data;
-//-(void) sendToGame : (NSString*) data;
+-(void) initializeWith : (NativeDataCallback) bridgeCallback;
+-(void) sendToNative : (const Byte*) data withLength:(int) length;
 @end
 
 #endif /* ObjcSide_h */
