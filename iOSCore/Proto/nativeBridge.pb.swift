@@ -48,17 +48,17 @@ public struct Container {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var boolMap: Dictionary<String,Bool> = [:]
+  public var booleans: Dictionary<String,Bool> = [:]
 
-  public var intMap: Dictionary<String,Int32> = [:]
+  public var integers: Dictionary<String,Int32> = [:]
 
-  public var floatMap: Dictionary<String,Float> = [:]
+  public var floats: Dictionary<String,Float> = [:]
 
-  public var stringMap: Dictionary<String,String> = [:]
+  public var strings: Dictionary<String,String> = [:]
 
-  public var bytesMap: Dictionary<String,Data> = [:]
+  public var bytes: Dictionary<String,Data> = [:]
 
-  public var containerMap: Dictionary<String,Container> = [:]
+  public var containers: Dictionary<String,Container> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -105,57 +105,57 @@ extension Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
 extension Container: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = "Container"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "boolMap"),
-    2: .same(proto: "intMap"),
-    3: .same(proto: "floatMap"),
-    4: .same(proto: "stringMap"),
-    5: .same(proto: "bytesMap"),
-    6: .same(proto: "containerMap"),
+    1: .same(proto: "booleans"),
+    2: .same(proto: "integers"),
+    3: .same(proto: "floats"),
+    4: .same(proto: "strings"),
+    5: .same(proto: "bytes"),
+    6: .same(proto: "containers"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBool>.self, value: &self.boolMap)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufInt32>.self, value: &self.intMap)
-      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufFloat>.self, value: &self.floatMap)
-      case 4: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.stringMap)
-      case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: &self.bytesMap)
-      case 6: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Container>.self, value: &self.containerMap)
+      case 1: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBool>.self, value: &self.booleans)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufInt32>.self, value: &self.integers)
+      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufFloat>.self, value: &self.floats)
+      case 4: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.strings)
+      case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: &self.bytes)
+      case 6: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Container>.self, value: &self.containers)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.boolMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBool>.self, value: self.boolMap, fieldNumber: 1)
+    if !self.booleans.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBool>.self, value: self.booleans, fieldNumber: 1)
     }
-    if !self.intMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufInt32>.self, value: self.intMap, fieldNumber: 2)
+    if !self.integers.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufInt32>.self, value: self.integers, fieldNumber: 2)
     }
-    if !self.floatMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufFloat>.self, value: self.floatMap, fieldNumber: 3)
+    if !self.floats.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufFloat>.self, value: self.floats, fieldNumber: 3)
     }
-    if !self.stringMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.stringMap, fieldNumber: 4)
+    if !self.strings.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.strings, fieldNumber: 4)
     }
-    if !self.bytesMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: self.bytesMap, fieldNumber: 5)
+    if !self.bytes.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufBytes>.self, value: self.bytes, fieldNumber: 5)
     }
-    if !self.containerMap.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Container>.self, value: self.containerMap, fieldNumber: 6)
+    if !self.containers.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Container>.self, value: self.containers, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Container, rhs: Container) -> Bool {
-    if lhs.boolMap != rhs.boolMap {return false}
-    if lhs.intMap != rhs.intMap {return false}
-    if lhs.floatMap != rhs.floatMap {return false}
-    if lhs.stringMap != rhs.stringMap {return false}
-    if lhs.bytesMap != rhs.bytesMap {return false}
-    if lhs.containerMap != rhs.containerMap {return false}
+    if lhs.booleans != rhs.booleans {return false}
+    if lhs.integers != rhs.integers {return false}
+    if lhs.floats != rhs.floats {return false}
+    if lhs.strings != rhs.strings {return false}
+    if lhs.bytes != rhs.bytes {return false}
+    if lhs.containers != rhs.containers {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

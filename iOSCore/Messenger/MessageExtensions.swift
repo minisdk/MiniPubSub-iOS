@@ -19,40 +19,40 @@ public extension Message{
 
 public extension Container{
     mutating func add(key: String, value: Bool){
-        self.boolMap[key] = value
+        self.booleans[key] = value
     }
     mutating func add(key: String, value: Int32){
-        self.intMap[key] = value
+        self.integers[key] = value
     }
     mutating func add(key: String, value: Float){
-        self.floatMap[key] = value
+        self.floats[key] = value
     }
     mutating func add(key: String, value: String){
-        self.stringMap[key] = value
+        self.strings[key] = value
     }
     mutating func add(key: String, value: Data){
-        self.bytesMap[key] = value
+        self.bytes[key] = value
     }
     mutating func add(key: String, value: Container){
-        self.containerMap[key] = value
+        self.containers[key] = value
     }
     
     func getBool(key: String) -> Bool?{
-        return self.boolMap[key]
+        return self.booleans[key]
     }
     func getInt(key: String) -> Int32?{
-        return self.intMap[key]
+        return self.integers[key]
     }
     func getFloat(key: String) -> Float?{
-        return self.floatMap[key]
+        return self.floats[key]
     }
     func getString(key: String) -> String?{
-        return self.stringMap[key]
+        return self.strings[key]
     }
     func getBytes(key: String) -> Data?{
-        return self.bytesMap[key]
+        return self.bytes[key]
     }
     func getContainer(key: String) -> Container?{
-        return self.containerMap[key]
+        return self.containers[key]
     }
 }

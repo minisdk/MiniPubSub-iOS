@@ -18,7 +18,7 @@
 		C49F9A202B71F22100047CAA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F9A1F2B71F22100047CAA /* Tag.swift */; };
 		C4B08F4F2B5A3E7A0082917E /* iOSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C4B08F4E2B5A3E7A0082917E /* iOSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C4B08F572B5A3EAE0082917E /* iOSCoreBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F562B5A3EAE0082917E /* iOSCoreBridge.mm */; };
-		C4B08F5D2B5A467E0082917E /* MessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F5C2B5A467E0082917E /* MessageExtension.swift */; };
+		C4B08F5D2B5A467E0082917E /* MessageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F5C2B5A467E0082917E /* MessageExtensions.swift */; };
 		C4B08F5F2B5A46D00082917E /* MessageHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F5E2B5A46D00082917E /* MessageHolder.swift */; };
 		C4B08F612B5A47520082917E /* MessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F602B5A47520082917E /* MessageNode.swift */; };
 		C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F632B5A49D40082917E /* MessageMediator.swift */; };
@@ -40,7 +40,7 @@
 		C4B08F4B2B5A3E7A0082917E /* iOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B08F4E2B5A3E7A0082917E /* iOSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSCore.h; sourceTree = "<group>"; };
 		C4B08F562B5A3EAE0082917E /* iOSCoreBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSCoreBridge.mm; sourceTree = "<group>"; };
-		C4B08F5C2B5A467E0082917E /* MessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtension.swift; sourceTree = "<group>"; };
+		C4B08F5C2B5A467E0082917E /* MessageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtensions.swift; sourceTree = "<group>"; };
 		C4B08F5E2B5A46D00082917E /* MessageHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHolder.swift; sourceTree = "<group>"; };
 		C4B08F602B5A47520082917E /* MessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNode.swift; sourceTree = "<group>"; };
 		C4B08F632B5A49D40082917E /* MessageMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediator.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		C4B08F5B2B5A43870082917E /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
-				C4B08F5C2B5A467E0082917E /* MessageExtension.swift */,
+				C4B08F5C2B5A467E0082917E /* MessageExtensions.swift */,
 				C4B08F5E2B5A46D00082917E /* MessageHolder.swift */,
 				C4B08F602B5A47520082917E /* MessageNode.swift */,
 				C4B08F632B5A49D40082917E /* MessageMediator.swift */,
@@ -252,7 +252,7 @@
 				C4B08F572B5A3EAE0082917E /* iOSCoreBridge.mm in Sources */,
 				C4B08F5F2B5A46D00082917E /* MessageHolder.swift in Sources */,
 				C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */,
-				C4B08F5D2B5A467E0082917E /* MessageExtension.swift in Sources */,
+				C4B08F5D2B5A467E0082917E /* MessageExtensions.swift in Sources */,
 				C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */,
 				C49F995B2B5A4F0600047CAA /* MessagePostman.swift in Sources */,
 				C49F99612B5B56B400047CAA /* MessageCollector.swift in Sources */,
