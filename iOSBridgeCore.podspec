@@ -19,10 +19,9 @@
   spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "0.0.1" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source_files  = "iOSCore/**/*.{h,m,mm,swift}"
+  spec.source_files  = "iOSBridgeCore/**/*.{h,m,mm,swift}"
   spec.exclude_files = "Classes/Exclude"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.dependency "SwiftProtobuf", "~> 1.9.0"
-
 end
