@@ -1,10 +1,11 @@
   Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.name         = "iOSBridgeCore"
-  spec.version      = "0.0.1"
-  spec.summary      = "Core module for NativeBrige between game and iOS."
-  spec.homepage     = "https://github.com/psmjazz/NativeBridge-iOS"
+  spec.name          = "iOSBridgeCore"
+  spec.version       = "0.0.1"
+  spec.summary       = "Core module for NativeBrige between game and iOS."
+  spec.homepage      = "https://github.com/psmjazz/NativeBridge-iOS"
+  spec.swift_version = "5.0"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.license      = "MIT"
