@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38E547BC806A8B497B7822A3 /* Pods_iOSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECB0C72E263E40E90F978E7 /* Pods_iOSCore.framework */; };
+		0DC65C8BD87216ECBF7A67FF /* Pods_iOSBridgeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CDA6905BC49D82C718B5E2 /* Pods_iOSBridgeCore.framework */; };
 		C466C2F92B7F11CF0027BA8B /* nativeBridge.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C466C2F82B7F11CF0027BA8B /* nativeBridge.pb.swift */; };
 		C49F995B2B5A4F0600047CAA /* MessagePostman.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995A2B5A4F0600047CAA /* MessagePostman.swift */; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
@@ -26,8 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C188E4C15CF15357CF1A28E /* Pods-iOSCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCore.debug.xcconfig"; path = "Target Support Files/Pods-iOSCore/Pods-iOSCore.debug.xcconfig"; sourceTree = "<group>"; };
-		8ECB0C72E263E40E90F978E7 /* Pods_iOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EA6DC28E48ECA1513D232C0 /* Pods-iOSBridgeCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSBridgeCore.release.xcconfig"; path = "Target Support Files/Pods-iOSBridgeCore/Pods-iOSBridgeCore.release.xcconfig"; sourceTree = "<group>"; };
+		2B43DD62F1834C113973BC96 /* Pods-iOSBridgeCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSBridgeCore.debug.xcconfig"; path = "Target Support Files/Pods-iOSBridgeCore/Pods-iOSBridgeCore.debug.xcconfig"; sourceTree = "<group>"; };
+		B0CDA6905BC49D82C718B5E2 /* Pods_iOSBridgeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSBridgeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C466C2F82B7F11CF0027BA8B /* nativeBridge.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nativeBridge.pb.swift; sourceTree = "<group>"; };
 		C49F995A2B5A4F0600047CAA /* MessagePostman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePostman.swift; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		C4B08F602B5A47520082917E /* MessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNode.swift; sourceTree = "<group>"; };
 		C4B08F632B5A49D40082917E /* MessageMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediator.swift; sourceTree = "<group>"; };
 		C4B08F652B5A4A270082917E /* MessageMediatorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediatorImpl.swift; sourceTree = "<group>"; };
-		F61E04EF011A925074999DF8 /* Pods-iOSCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSCore.release.xcconfig"; path = "Target Support Files/Pods-iOSCore/Pods-iOSCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,28 +53,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38E547BC806A8B497B7822A3 /* Pods_iOSCore.framework in Frameworks */,
+				0DC65C8BD87216ECBF7A67FF /* Pods_iOSBridgeCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5EC9A5C2911A6FB6D0DB29DE /* Frameworks */ = {
+		26AB086660BC03E06308A745 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8ECB0C72E263E40E90F978E7 /* Pods_iOSCore.framework */,
+				2B43DD62F1834C113973BC96 /* Pods-iOSBridgeCore.debug.xcconfig */,
+				0EA6DC28E48ECA1513D232C0 /* Pods-iOSBridgeCore.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		B4FC86B452D4750AD6F52902 /* Pods */ = {
+		294F492ACAB55F058EF12A9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C188E4C15CF15357CF1A28E /* Pods-iOSCore.debug.xcconfig */,
-				F61E04EF011A925074999DF8 /* Pods-iOSCore.release.xcconfig */,
+				B0CDA6905BC49D82C718B5E2 /* Pods_iOSBridgeCore.framework */,
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C466C2F12B7F07260027BA8B /* Proto */ = {
@@ -90,8 +91,8 @@
 			children = (
 				C4B08F4D2B5A3E7A0082917E /* iOSBridgeCore */,
 				C4B08F4C2B5A3E7A0082917E /* Products */,
-				B4FC86B452D4750AD6F52902 /* Pods */,
-				5EC9A5C2911A6FB6D0DB29DE /* Frameworks */,
+				26AB086660BC03E06308A745 /* Pods */,
+				294F492ACAB55F058EF12A9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,7 +235,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iOSCore-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-iOSBridgeCore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -397,7 +398,7 @@
 		};
 		C4B08F532B5A3E7A0082917E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C188E4C15CF15357CF1A28E /* Pods-iOSCore.debug.xcconfig */;
+			baseConfigurationReference = 2B43DD62F1834C113973BC96 /* Pods-iOSBridgeCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -435,7 +436,7 @@
 		};
 		C4B08F542B5A3E7A0082917E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F61E04EF011A925074999DF8 /* Pods-iOSCore.release.xcconfig */;
+			baseConfigurationReference = 0EA6DC28E48ECA1513D232C0 /* Pods-iOSBridgeCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
