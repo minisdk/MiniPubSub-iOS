@@ -16,7 +16,7 @@
   spec.platform     = :ios, "12.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "0.0.1" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.source_files  = "iOSCore/**/*.{h,m,mm,swift}"
