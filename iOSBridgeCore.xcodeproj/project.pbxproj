@@ -37,7 +37,7 @@
 		C49F99682B5B7EF000047CAA /* ObjcSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcSide.m; sourceTree = "<group>"; };
 		C49F998F2B5CB1BF00047CAA /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		C49F9A1F2B71F22100047CAA /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		C4B08F4B2B5A3E7A0082917E /* iOSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B08F4B2B5A3E7A0082917E /* iOSBridgeCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iOSBridgeCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B08F4E2B5A3E7A0082917E /* iOSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSCore.h; sourceTree = "<group>"; };
 		C4B08F562B5A3EAE0082917E /* iOSCoreBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSCoreBridge.mm; sourceTree = "<group>"; };
 		C4B08F5C2B5A467E0082917E /* MessageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtensions.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		C4B08F412B5A3E7A0082917E = {
 			isa = PBXGroup;
 			children = (
-				C4B08F4D2B5A3E7A0082917E /* iOSCore */,
+				C4B08F4D2B5A3E7A0082917E /* iOSBridgeCore */,
 				C4B08F4C2B5A3E7A0082917E /* Products */,
 				B4FC86B452D4750AD6F52902 /* Pods */,
 				5EC9A5C2911A6FB6D0DB29DE /* Frameworks */,
@@ -98,12 +98,12 @@
 		C4B08F4C2B5A3E7A0082917E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C4B08F4B2B5A3E7A0082917E /* iOSCore.framework */,
+				C4B08F4B2B5A3E7A0082917E /* iOSBridgeCore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C4B08F4D2B5A3E7A0082917E /* iOSCore */ = {
+		C4B08F4D2B5A3E7A0082917E /* iOSBridgeCore */ = {
 			isa = PBXGroup;
 			children = (
 				C466C2F12B7F07260027BA8B /* Proto */,
@@ -111,7 +111,7 @@
 				C4B08F552B5A3E900082917E /* Bridge */,
 				C4B08F4E2B5A3E7A0082917E /* iOSCore.h */,
 			);
-			path = iOSCore;
+			path = iOSBridgeCore;
 			sourceTree = "<group>";
 		};
 		C4B08F552B5A3E900082917E /* Bridge */ = {
@@ -156,9 +156,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C4B08F4A2B5A3E7A0082917E /* iOSCore */ = {
+		C4B08F4A2B5A3E7A0082917E /* iOSBridgeCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4B08F522B5A3E7A0082917E /* Build configuration list for PBXNativeTarget "iOSCore" */;
+			buildConfigurationList = C4B08F522B5A3E7A0082917E /* Build configuration list for PBXNativeTarget "iOSBridgeCore" */;
 			buildPhases = (
 				20BB749411EB74CAD0CD324B /* [CP] Check Pods Manifest.lock */,
 				C4B08F462B5A3E7A0082917E /* Headers */,
@@ -170,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = iOSCore;
+			name = iOSBridgeCore;
 			productName = iOSCore;
-			productReference = C4B08F4B2B5A3E7A0082917E /* iOSCore.framework */;
+			productReference = C4B08F4B2B5A3E7A0082917E /* iOSBridgeCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +190,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C4B08F452B5A3E7A0082917E /* Build configuration list for PBXProject "iOSCore" */;
+			buildConfigurationList = C4B08F452B5A3E7A0082917E /* Build configuration list for PBXProject "iOSBridgeCore" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -203,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C4B08F4A2B5A3E7A0082917E /* iOSCore */,
+				C4B08F4A2B5A3E7A0082917E /* iOSBridgeCore */,
 			);
 		};
 /* End PBXProject section */
@@ -400,6 +400,7 @@
 			baseConfigurationReference = 4C188E4C15CF15357CF1A28E /* Pods-iOSCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -420,8 +421,9 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pj.iOSCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pj.iOSBridgeCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -436,6 +438,7 @@
 			baseConfigurationReference = F61E04EF011A925074999DF8 /* Pods-iOSCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -456,8 +459,9 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pj.iOSCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pj.iOSBridgeCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -469,7 +473,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C4B08F452B5A3E7A0082917E /* Build configuration list for PBXProject "iOSCore" */ = {
+		C4B08F452B5A3E7A0082917E /* Build configuration list for PBXProject "iOSBridgeCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4B08F502B5A3E7A0082917E /* Debug */,
@@ -478,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4B08F522B5A3E7A0082917E /* Build configuration list for PBXNativeTarget "iOSCore" */ = {
+		C4B08F522B5A3E7A0082917E /* Build configuration list for PBXNativeTarget "iOSBridgeCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4B08F532B5A3E7A0082917E /* Debug */,

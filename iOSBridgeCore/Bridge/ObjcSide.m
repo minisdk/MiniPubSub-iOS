@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ObjcSide.h"
-#import <iOSCore/iOSCore-Swift.h>
+#import <iOSBridgeCore/iOSBridgeCore-Swift.h>
 
 @implementation ObjcSide : NSObject
 + (instancetype)sharedInstance{

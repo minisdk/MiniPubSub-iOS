@@ -23,6 +23,6 @@
   spec.exclude_files = "Classes/Exclude"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.framework  = "SwiftProtobuf"
+  spec.dependency "SwiftProtobuf", "~> 1.9.0"
 
 end
