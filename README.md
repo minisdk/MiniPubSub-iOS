@@ -1,9 +1,59 @@
 # iOSCore
-Core module for NativeBrige between game and iOS.
-Make it easy to call between iOS and game.
+Helps comunication between iOS and game(Unity only)
 
-1. In Game or iOS, Set Handler with 'key'
-2. On the other side, Create Message with 'key' and data, call 'Notify' function
-3. handler with 'key' will be called with 'data'
-4. If you want to return result, call 'giveBack' function with 'data'
+## How to use
 
+### Container
+Data storing unit.
+
+Currently storess the following types:
+- Bool
+- Int32
+- Float
+- String
+- Data
+- Other Container object
+
+### Message
+Data deliver unit.
+- key : string value, identifier of message. Notified messages are deliverd to handler registerd with key.
+- container : Container object
+
+### Tag
+Filters message
+- MessageHandler sets Tags. It only receives message containing all set tags.
+- Notifies message with Tags. messages are arrived messageHandlers which have tags all.
+
+### MessageHandler
+Notify and subscribe messages.
+- Notifies message to other android or game side MessageHandler object. 
+- Subscribes message from other android or game side MessageHandler object.
+
+### Usage
+Sample Code Receiving open native alert request from game.
+```swift
+public class NativeUIController{
+    
+    private let messageHandler : MessageHandler
+    
+    init(){
+        handler = MessageHandler(tag: Tag.native)
+        handler.setHandler("OPEN_ALRET", handler: onReceive)
+    }
+
+    private func onReceive(messageHolder: MessageHolder){
+        let alertMessage = messageHolder.container.getString("alertMessage") ?? ""
+        let pressOk = openAlert(alertMessage: alertMessage)
+
+        var container = Container()
+        container.add(key: "pressOk", value: pressOk)
+        let message = Message(key: "ALERT_RESULT", container: container)
+        holder.giveBack(message: message)
+
+    }
+
+    private func openAlert(alertMessage: String) -> Bool{
+
+    }
+}
+```
