@@ -1,18 +1,50 @@
 # iOSCore
 Helps comunication between iOS and game(Unity only)
 
+## Getting started
+Add dependency in your framework
+1. Init pod file
+```
+pod init
+```
+2. Open pod file and add iOSBridgeCore dependency
+```ruby
+target 'iOSTutorial' do
+  platform :ios, '12.0'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  # Pods for iOSTutorial
+  pod 'iOSBridgeCore', :git => 'https://github.com/psmjazz/NativeBridge-iOS.git', :tag => '0.0.1' 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    end
+  end
+end
+```
+3. Run pod install or update
+```
+pod install
+```
+
 ## How to use
 
 ### Container
 Data storing unit.
 
 Currently storess the following types:
-- Bool
-- Int32
-- Float
-- String
-- Data
-- Other Container object
+|types|c#|kotlin|swift|
+|---|---|---|---|
+|boolean|bool|Boolean|Bool|
+|32bit-integer|int|Int|Int32|
+|float|float|Float|Float|
+|string|string|String|String|
+|byte array|byte[]|ByteArray|Data|
+|other Container object|Container|Conatiner|Conatiner|
 
 ### Message
 Data deliver unit.
