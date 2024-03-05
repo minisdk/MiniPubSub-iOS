@@ -1,8 +1,8 @@
   Pod::Spec.new do |spec|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.name          = "iOSBridgeCore"
-  spec.version       = "0.0.1"
+  spec.name          = "iOSPubSub"
+  spec.version       = "0.0.2"
   spec.summary       = "Core module for NativeBrige between game and iOS."
   spec.homepage      = "https://github.com/psmjazz/NativeBridge-iOS"
   spec.swift_version = "5.0"
@@ -17,10 +17,10 @@
   spec.platform     = :ios, "12.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "0.0.1" }
+  spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "v#{spec.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source_files  = "iOSBridgeCore/**/*.{h,m,mm,swift}"
+  spec.source_files  = "iOSPubSub/**/*.{h,m,mm,swift}"
   spec.exclude_files = "Classes/Exclude"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

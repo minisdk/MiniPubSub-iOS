@@ -11,22 +11,22 @@ import Foundation
     func fromSwift(data: Data)
 }
 
-@objc public class Game : NSObject{
+@objc public class GameRelay : NSObject{
 
-    private let collector : MessageCollector
+    private let collector : Messenger
     private let callback : SwiftCallback
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        collector = MessageCollector(tag: Tag.game)
+        collector = Messenger(tag: Tag.game)
         super.init()
-        collector.setHandler(handler: onListen)
+        collector.subscribe(handler: onListen) { _ in true }
     }
     
     @objc public func send(data: Data){
         let message = toMessage(data: data)
         if(message != nil){
-            collector.notify(message: message!, tag: Tag.native)
+            collector.publish(message: message!, tag: Tag.native)
         }
         else{
             print("protobuf deserialize fail.... [game -> native]")

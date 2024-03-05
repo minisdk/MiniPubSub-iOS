@@ -9,28 +9,26 @@ import Foundation
 
 class MessageMediatorImpl : MessageMediator{
     
-    private var idFilter : [Int : MessageNode]
+    private var idFilter : [Int : ReceivablePublisher]
     
     init(){
         idFilter = [:]
     }
     
-    func register(node: MessageNode) {
+    func register(node: ReceivablePublisher) {
         idFilter[node.id] = node
     }
     
-    func notify(message: Message, tag: Tag, notifier: Notifier){
-        let holder = MessagePostman(message, linkReceiver(notifier))
+    func publish(message: Message, tag: Tag, publisher: Publisher){
+        let holder = MessagePostman(message, linkReceiver(publisher))
         idFilter.values.filter{node in
-            node.tag.contains(tag: tag)
+            node.tag.contains(tag: tag) && node.id != publisher.id
         }.forEach { node in
-            if node.hasKey(key: message.key){
-                node.onReceive(holder)
-            }
+            node.onReceive(holder)
         }
     }
     
-    private func linkReceiver(_ notifier: Notifier) -> Receivable?{
+    private func linkReceiver(_ notifier: Publisher) -> Receivable?{
         return idFilter[notifier.id]
     }
     

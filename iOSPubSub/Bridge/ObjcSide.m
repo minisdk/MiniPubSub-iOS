@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ObjcSide.h"
-#import <iOSBridgeCore/iOSBridgeCore-Swift.h>
+#import <iOSPubSub/iOSPubSub-Swift.h>
 
 @implementation ObjcSide : NSObject
 + (instancetype)sharedInstance{
@@ -21,14 +21,14 @@
 }
 
 - (void)initializeWith:(NativeDataCallback)bridgeCallback {
-    game = [[Game alloc] initWithCallback:self];
+    gameRelay = [[GameRelay alloc] initWithCallback:self];
     
     self->dataCallback = bridgeCallback;
 }
 
 - (void)sendToNative:(const Byte *)data withLength:(int)length{
     NSData *nsData = [NSData dataWithBytes:data length:length];
-    [game sendWithData:nsData];
+    [gameRelay sendWithData:nsData];
 }
 
 - (void)fromSwiftWithData:(NSData *)data{

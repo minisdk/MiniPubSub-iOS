@@ -2,7 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:iOSBridgeCore.xcodeproj">
+      location = "group:sample/sample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:iOSPubSub.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C4B08F4A2B5A3E7A0082917E"
-               BuildableName = "iOSBridgeCore.framework"
-               BlueprintName = "iOSBridgeCore"
-               ReferencedContainer = "container:iOSBridgeCore.xcodeproj">
+               BuildableName = "iOSPubSub.framework"
+               BlueprintName = "iOSPubSub"
+               ReferencedContainer = "container:iOSPubSub.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,9 +50,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4B08F4A2B5A3E7A0082917E"
-            BuildableName = "iOSBridgeCore.framework"
-            BlueprintName = "iOSBridgeCore"
-            ReferencedContainer = "container:iOSBridgeCore.xcodeproj">
+            BuildableName = "iOSPubSub.framework"
+            BlueprintName = "iOSPubSub"
+            ReferencedContainer = "container:iOSPubSub.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

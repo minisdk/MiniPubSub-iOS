@@ -13,7 +13,7 @@ public enum ReceiveMode{
 }
 
 protocol MessageMediator{
-    func register(node: MessageNode)
-    func notify(message: Message, tag: Tag, notifier: Notifier)
+    func register(node: ReceivablePublisher)
+    func publish(message: Message, tag: Tag, publisher: Publisher)
     func giveBack(message: Message, giveBacked: Receivable)
 }

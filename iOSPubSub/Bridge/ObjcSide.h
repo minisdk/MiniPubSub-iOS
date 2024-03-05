@@ -13,13 +13,13 @@
 //typedef void (*NativeMessageCallback)(const char* data);
 typedef void (*NativeDataCallback)(const Byte* data, int length);
 
-@class Game;
+@class GameRelay;
 @protocol SwiftCallback;
 
 @interface ObjcSide : NSObject<SwiftCallback>
 {
     NativeDataCallback dataCallback;
-    Game* game;
+    GameRelay* gameRelay;
 }
 
 +(instancetype) sharedInstance;

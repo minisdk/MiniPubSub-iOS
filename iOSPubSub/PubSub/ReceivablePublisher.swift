@@ -12,7 +12,7 @@ public protocol Receivable{
     func onReceive(_ messageHolder: MessageHolder)
 }
 
-public class Notifier{
+public class Publisher{
     
     private class IDConuter{
         public static let shared = IDConuter()
@@ -30,9 +30,9 @@ public class Notifier{
         self.tag = tag
     }
     
-    public func notify(message: Message, tag: Tag){
-        MessageManager.shared.mediator.notify(message: message, tag: tag, notifier: self)
+    public func publish(message: Message, tag: Tag){
+        MessageManager.shared.mediator.publish(message: message, tag: tag, publisher: self)
     }
 }
 
-public typealias MessageNode = Notifier & Receivable
+public typealias ReceivablePublisher = Publisher & Receivable
