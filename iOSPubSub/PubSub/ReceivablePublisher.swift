@@ -16,14 +16,14 @@ public class Publisher{
     
     private class IDConuter{
         public static let shared = IDConuter()
-        private var id = 0
-        public func getID() -> Int{
-            id+=1
+        private var id : Int32 = 1
+        public func getID() -> Int32{
+            id+=2
             return id
         }
     }
     
-    public let id: Int = IDConuter.shared.getID()
+    public let id: Int32 = IDConuter.shared.getID()
     public let tag: Tag
     
     init(tag: Tag = Tag.native) {
@@ -31,7 +31,7 @@ public class Publisher{
     }
     
     public func publish(message: Message, tag: Tag){
-        MessageManager.shared.mediator.publish(message: message, tag: tag, publisher: self)
+        MessageManager.shared.mediator.publish(message: message, tag: tag)
     }
 }
 

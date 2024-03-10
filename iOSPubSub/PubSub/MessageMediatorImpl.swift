@@ -9,7 +9,7 @@ import Foundation
 
 class MessageMediatorImpl : MessageMediator{
     
-    private var idFilter : [Int : ReceivablePublisher]
+    private var idFilter : [Int32 : ReceivablePublisher]
     
     init(){
         idFilter = [:]
@@ -19,12 +19,22 @@ class MessageMediatorImpl : MessageMediator{
         idFilter[node.id] = node
     }
     
-    func publish(message: Message, tag: Tag, publisher: Publisher){
-        let holder = MessagePostman(message, linkReceiver(publisher))
-        idFilter.values.filter{node in
-            node.tag.contains(tag: tag) && node.id != publisher.id
-        }.forEach { node in
-            node.onReceive(holder)
+    func publish(message: Message, tag: Tag){
+        if(message.envelope.hasReceiverID){
+            let receiver = idFilter[message.envelope.receiverID]
+            if(receiver != nil)
+            {
+                let holder = MessagePostman(message)
+                receiver!.onReceive(holder)
+            }
+        }
+        else{
+            let holder = MessagePostman(message)
+            idFilter.values.filter{node in
+                node.tag.contains(tag: tag) && node.id != message.envelope.senderID
+            }.forEach { node in
+                node.onReceive(holder)
+            }
         }
     }
     
@@ -32,9 +42,25 @@ class MessageMediatorImpl : MessageMediator{
         return idFilter[notifier.id]
     }
     
-    func giveBack(message: Message, giveBacked: Receivable) {
-        let holder = MessagePostman(message, nil)
-        giveBacked.onReceive(holder)
+    func reply(message: Message) {
+        if(!message.envelope.hasReceiverID){
+            return
+        }
+        let receiver = idFilter[message.envelope.receiverID]
+        if(receiver != nil)
+        {
+            let holder = MessagePostman(message)
+            receiver!.onReceive(holder)
+        }
+        else
+        {
+            let holder = MessagePostman(message)
+            idFilter.values.filter{node in
+                node.tag.contains(tag: Tag.game) && node.id != message.envelope.senderID
+            }.forEach { node in
+                node.onReceive(holder)
+            }
+        }
     }
     
     

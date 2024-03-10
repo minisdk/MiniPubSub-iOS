@@ -9,5 +9,5 @@ import Foundation
 
 public protocol MessageHolder{
     var message: Message {get}
-    func giveBack(message: Message)
+    func reply(message: Message)
 }

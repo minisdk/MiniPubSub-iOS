@@ -7,13 +7,8 @@
 
 import Foundation
 
-public enum ReceiveMode{
-    case all
-    case select
-}
-
 protocol MessageMediator{
     func register(node: ReceivablePublisher)
-    func publish(message: Message, tag: Tag, publisher: Publisher)
-    func giveBack(message: Message, giveBacked: Receivable)
+    func publish(message: Message, tag: Tag)
+    func reply(message: Message)
 }
