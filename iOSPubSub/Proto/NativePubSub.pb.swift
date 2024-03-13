@@ -36,21 +36,11 @@ public struct Message {
   /// Clears the value of `container`. Subsequent reads from it will return its default value.
   public mutating func clearContainer() {self._container = nil}
 
-  public var envelope: Envelope {
-    get {return _envelope ?? Envelope()}
-    set {_envelope = newValue}
-  }
-  /// Returns true if `envelope` has been explicitly set.
-  public var hasEnvelope: Bool {return self._envelope != nil}
-  /// Clears the value of `envelope`. Subsequent reads from it will return its default value.
-  public mutating func clearEnvelope() {self._envelope = nil}
-
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
   fileprivate var _container: Container? = nil
-  fileprivate var _envelope: Envelope? = nil
 }
 
 public struct Container {
@@ -80,6 +70,15 @@ public struct Envelope {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  public var message: Message {
+    get {return _message ?? Message()}
+    set {_message = newValue}
+  }
+  /// Returns true if `message` has been explicitly set.
+  public var hasMessage: Bool {return self._message != nil}
+  /// Clears the value of `message`. Subsequent reads from it will return its default value.
+  public mutating func clearMessage() {self._message = nil}
+
   public var senderID: Int32 = 0
 
   public var receiverID: Int32 {
@@ -95,6 +94,7 @@ public struct Envelope {
 
   public init() {}
 
+  fileprivate var _message: Message? = nil
   fileprivate var _receiverID: Int32? = nil
 }
 
@@ -105,7 +105,6 @@ extension Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "container"),
-    3: .same(proto: "envelope"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -113,7 +112,6 @@ extension Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.key)
       case 2: try decoder.decodeSingularMessageField(value: &self._container)
-      case 3: try decoder.decodeSingularMessageField(value: &self._envelope)
       default: break
       }
     }
@@ -126,16 +124,12 @@ extension Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     if let v = self._container {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     }
-    if let v = self._envelope {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Message, rhs: Message) -> Bool {
     if lhs.key != rhs.key {return false}
     if lhs._container != rhs._container {return false}
-    if lhs._envelope != rhs._envelope {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -203,31 +197,37 @@ extension Container: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
 extension Envelope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = "Envelope"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "senderID"),
-    2: .same(proto: "receiverID"),
+    1: .same(proto: "message"),
+    2: .same(proto: "senderID"),
+    3: .same(proto: "receiverID"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.senderID)
-      case 2: try decoder.decodeSingularInt32Field(value: &self._receiverID)
+      case 1: try decoder.decodeSingularMessageField(value: &self._message)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.senderID)
+      case 3: try decoder.decodeSingularInt32Field(value: &self._receiverID)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._message {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
     if self.senderID != 0 {
-      try visitor.visitSingularInt32Field(value: self.senderID, fieldNumber: 1)
+      try visitor.visitSingularInt32Field(value: self.senderID, fieldNumber: 2)
     }
     if let v = self._receiverID {
-      try visitor.visitSingularInt32Field(value: v, fieldNumber: 2)
+      try visitor.visitSingularInt32Field(value: v, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Envelope, rhs: Envelope) -> Bool {
+    if lhs._message != rhs._message {return false}
     if lhs.senderID != rhs.senderID {return false}
     if lhs._receiverID != rhs._receiverID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

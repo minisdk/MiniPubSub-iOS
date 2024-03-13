@@ -1,5 +1,5 @@
 //
-//  MessageNode.swift
+//  ReceivablePublisher.swift
 //  iOSCore
 //
 //  Created by sangmin park on 1/19/24.
@@ -9,7 +9,7 @@ import Foundation
 
 public protocol Receivable{
     func hasKey(key: String) -> Bool
-    func onReceive(_ messageHolder: MessageHolder)
+    func onReceive(_ envelop: Envelope)
 }
 
 public class Publisher{
@@ -31,7 +31,11 @@ public class Publisher{
     }
     
     public func publish(message: Message, tag: Tag){
-        MessageManager.shared.mediator.publish(message: message, tag: tag)
+        let envelope = Envelope(message, senderID: self.id)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: tag)
+    }
+    internal func publish(envelope: Envelope, tag: Tag){
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: tag)
     }
 }
 

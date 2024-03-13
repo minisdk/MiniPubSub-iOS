@@ -19,49 +19,28 @@ class MessageMediatorImpl : MessageMediator{
         idFilter[node.id] = node
     }
     
-    func publish(message: Message, tag: Tag){
-        if(message.envelope.hasReceiverID){
-            let receiver = idFilter[message.envelope.receiverID]
+    func publish(envelope: Envelope, tag: Tag){
+        if(envelope.hasReceiverID){
+            let receiver = idFilter[envelope.receiverID]
             if(receiver != nil)
             {
-                let holder = MessagePostman(message)
-                receiver!.onReceive(holder)
+                receiver!.onReceive(envelope)
+            }
+            else
+            {
+                self.broadcast(envelope, tag)
             }
         }
         else{
-            let holder = MessagePostman(message)
-            idFilter.values.filter{node in
-                node.tag.contains(tag: tag) && node.id != message.envelope.senderID
-            }.forEach { node in
-                node.onReceive(holder)
-            }
+            self.broadcast(envelope, tag)
         }
     }
     
-    private func linkReceiver(_ notifier: Publisher) -> Receivable?{
-        return idFilter[notifier.id]
-    }
-    
-    func reply(message: Message) {
-        if(!message.envelope.hasReceiverID){
-            return
-        }
-        let receiver = idFilter[message.envelope.receiverID]
-        if(receiver != nil)
-        {
-            let holder = MessagePostman(message)
-            receiver!.onReceive(holder)
-        }
-        else
-        {
-            let holder = MessagePostman(message)
-            idFilter.values.filter{node in
-                node.tag.contains(tag: Tag.game) && node.id != message.envelope.senderID
-            }.forEach { node in
-                node.onReceive(holder)
-            }
+    private func broadcast(_ envelope: Envelope, _ tag: Tag){
+        idFilter.values.filter{node in
+            node.tag.contains(tag: tag) && node.id != envelope.senderID
+        }.forEach { node in
+            node.onReceive(envelope)
         }
     }
-    
-    
 }

@@ -10,6 +10,6 @@ import UIKit
 
 @objc public class Loader : NSObject{
     @objc public static func loadModule(){
-        let sample = SampleKit()
+        let _ = SampleKit()
     }
 }
