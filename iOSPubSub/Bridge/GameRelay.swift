@@ -18,7 +18,8 @@ import Foundation
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        messenger = Messenger(tag: Tag.game)
+        messenger = Messenger()
+        messenger.setTagRule(all: Tag.relay)
         super.init()
         messenger.subscribe(handler: onListen) { _ in true }
     }
@@ -26,7 +27,9 @@ import Foundation
     @objc public func send(data: Data){
         let envelope = toEnvelope(data: data)
         if(envelope != nil){
-            messenger.publish(envelope: envelope!, tag: Tag.native)
+            let tag = Tag.named(names: envelope!.tagNames)
+            let unjoinedTag = tag.unjoin(Tag.relay)
+            messenger.publish(envelope: envelope!, tag: unjoinedTag)
         }
         else{
             print("protobuf deserialize fail.... [game -> native]")

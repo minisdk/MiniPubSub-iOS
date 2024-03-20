@@ -8,8 +8,9 @@
 import Foundation
 
 public protocol Receivable{
-    func hasKey(key: String) -> Bool
-    func onReceive(_ envelop: Envelope)
+    func setTagRule(all: Tag)
+    func matchTag(tag: Tag) -> Bool
+    func onReceive(_ envelop: Channel)
 }
 
 public class Publisher{
@@ -24,15 +25,19 @@ public class Publisher{
     }
     
     public let id: Int32 = IDConuter.shared.getID()
-    public let tag: Tag
     
-    init(tag: Tag = Tag.native) {
-        self.tag = tag
+    init() {
+    }
+    
+    public func publish(message: Message){
+        let envelope = Envelope(message, senderID: self.id)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.relay)
     }
     
     public func publish(message: Message, tag: Tag){
         let envelope = Envelope(message, senderID: self.id)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: tag)
+        let joined = tag.join(Tag.relay)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: joined)
     }
     internal func publish(envelope: Envelope, tag: Tag){
         MessageManager.shared.mediator.publish(envelope: envelope, tag: tag)

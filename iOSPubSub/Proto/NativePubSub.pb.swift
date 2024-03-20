@@ -90,6 +90,8 @@ public struct Envelope {
   /// Clears the value of `receiverID`. Subsequent reads from it will return its default value.
   public mutating func clearReceiverID() {self._receiverID = nil}
 
+  public var tagNames: [String] = []
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -200,6 +202,7 @@ extension Envelope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
     1: .same(proto: "message"),
     2: .same(proto: "senderID"),
     3: .same(proto: "receiverID"),
+    4: .same(proto: "tagNames"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -208,6 +211,7 @@ extension Envelope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
       case 1: try decoder.decodeSingularMessageField(value: &self._message)
       case 2: try decoder.decodeSingularInt32Field(value: &self.senderID)
       case 3: try decoder.decodeSingularInt32Field(value: &self._receiverID)
+      case 4: try decoder.decodeRepeatedStringField(value: &self.tagNames)
       default: break
       }
     }
@@ -223,6 +227,9 @@ extension Envelope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
     if let v = self._receiverID {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 3)
     }
+    if !self.tagNames.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.tagNames, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -230,6 +237,7 @@ extension Envelope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
     if lhs._message != rhs._message {return false}
     if lhs.senderID != rhs.senderID {return false}
     if lhs._receiverID != rhs._receiverID {return false}
+    if lhs.tagNames != rhs.tagNames {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

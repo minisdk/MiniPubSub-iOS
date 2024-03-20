@@ -9,20 +9,28 @@ import Foundation
 
 internal class ChannelConnection : Channel{
     
-    init(_ envelope: Envelope, _ publisher: Publisher) {
+    init(_ envelope: Envelope, _ receiverID: Int32, _ tag: Tag) {
         self.envelope = envelope
         self.message = envelope.message
         self.senderID = envelope.senderID
-        self.receiverID = publisher.id
+        self.receiverID = receiverID
+        self.tag = tag
     }
     
-    let envelope: Envelope
+    var envelope: Envelope
     let senderID: Int32
     let receiverID: Int32
+    var tag: Tag
     let message: Message
     
     func reply(message: Message) {
         let envelope = Envelope(message, senderID: self.receiverID, receiverID: self.senderID)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.game)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.relay)
+    }
+    
+    func serializeTag(){
+        tag.names.forEach{ tagName in
+            envelope.tagNames.append(tagName)
+        }
     }
 }

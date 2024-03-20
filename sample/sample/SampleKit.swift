@@ -13,7 +13,7 @@ class SampleKit{
     let messenger: Messenger
     
     init() {
-        messenger = Messenger(tag: Tag.native)
+        messenger = Messenger()
         messenger.subscribe(key: "test", handler: onTest)
         messenger.subscribe(key: "testRecall", handler: onTestRecall)
     }
@@ -24,7 +24,7 @@ class SampleKit{
         var container = Container()
         container.add(key: "data", value: "this is iOS message :D")
         let message = Message(key: "native", container: container)
-        messenger.publish(message: message, tag: Tag.game)
+        messenger.publish(message: message)
     }
     func onTestRecall(channel: Channel){
         let data = channel.message.container.getString(key: "data") ?? "no data....?"

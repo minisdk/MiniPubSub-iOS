@@ -9,13 +9,15 @@ import Foundation
 
 public final class Messenger : ReceivablePublisher{
     
+    private var allTag: Tag
     private var handlerMap : [String:(Channel) -> ()]
     private var conditionHandlers : [((Channel) -> (), (Message) -> Bool)]
     
-    public override init(tag: Tag) {
+    public override init() {
+        allTag = Tag.none
         handlerMap = [:]
         conditionHandlers = []
-        super.init(tag: tag)
+        super.init()
         MessageManager.shared.mediator.register(node: self)
     }
     
@@ -23,9 +25,17 @@ public final class Messenger : ReceivablePublisher{
         return handlerMap.keys.contains(key)
     }
     
-    public func onReceive(_ envelope: Envelope) {
-        let listener = handlerMap[envelope.message.key]
-        let channel = ChannelConnection(envelope, self)
+    public func setTagRule(all: Tag) {
+        self.allTag = all;
+    }
+    
+    public func matchTag(tag: Tag) -> Bool {
+        return tag.contains(tag: allTag)
+    }
+    
+    public func onReceive(_ channel: Channel) {
+        
+        let listener = handlerMap[channel.message.key]
         listener?(channel)
         conditionHandlers.forEach { (handler, condition) in
             if(condition(channel.message)){
