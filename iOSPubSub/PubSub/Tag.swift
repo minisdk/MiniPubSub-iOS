@@ -145,5 +145,6 @@ extension Tag{
 
 extension Tag{
     public static let none = namedWithID(name:"None", id:0b0)
-    public static let relay = named(name:"Relay")
+    public static let game = named(name:"Game")
+    public static let native = named(name:"Native")
 }

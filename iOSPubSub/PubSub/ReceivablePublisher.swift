@@ -23,24 +23,30 @@ public class Publisher{
             return id
         }
     }
-    
+
+    private var baseTag = Tag.none
     public let id: Int32 = IDConuter.shared.getID()
     
     init() {
     }
     
+    public func setBaseTag(_ tag: Tag){
+        baseTag = tag
+    }
+    
     public func publish(message: Message){
         let envelope = Envelope(message, senderID: self.id)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.relay)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: baseTag)
     }
     
     public func publish(message: Message, tag: Tag){
         let envelope = Envelope(message, senderID: self.id)
-        let joined = tag.join(Tag.relay)
+        let joined = baseTag.join(tag)
         MessageManager.shared.mediator.publish(envelope: envelope, tag: joined)
     }
     internal func publish(envelope: Envelope, tag: Tag){
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: tag)
+        let joined = baseTag.join(tag)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: joined)
     }
 }
 

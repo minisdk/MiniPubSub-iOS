@@ -25,7 +25,7 @@ internal class ChannelConnection : Channel{
     
     func reply(message: Message) {
         let envelope = Envelope(message, senderID: self.receiverID, receiverID: self.senderID)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.relay)
+        MessageManager.shared.mediator.publish(envelope: envelope, tag: Tag.none)
     }
     
     func serializeTag(){
