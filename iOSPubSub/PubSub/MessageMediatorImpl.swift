@@ -21,11 +21,9 @@ class MessageMediatorImpl : MessageMediator{
     
     func publish(envelope: Envelope, tag: Tag){
         if(envelope.hasReceiverID){
-            let receiver = idFilter[envelope.receiverID]
-            if(receiver != nil)
-            {
-                let channel = ChannelConnection(envelope, receiver!.id, tag)
-                receiver!.onReceive(channel)
+            if let receiver = idFilter[envelope.receiverID]{
+                var envelopeHolder = EnvelopeHolder(envelope: envelope, tag: tag)
+                receiver.onReceive(envelopeHolder)
             }
             else
             {
@@ -41,8 +39,8 @@ class MessageMediatorImpl : MessageMediator{
         idFilter.values.filter{node in
             node.matchTag(tag: tag) && node.id != envelope.senderID
         }.forEach { node in
-            let channel = ChannelConnection(envelope, node.id, tag)
-            node.onReceive(channel)
+            var envelopeHolder = EnvelopeHolder(envelope: envelope, tag: tag)
+            node.onReceive(envelopeHolder)
         }
     }
 }

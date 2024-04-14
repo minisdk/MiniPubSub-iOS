@@ -19,22 +19,22 @@ class SampleKit{
         messenger.subscribe(key: "testRecall", handler: onTestRecall)
     }
     
-    func onTest(channel: Channel){
-        print("onTest : " + channel.message.key);
+    func onTest(message: Message){
+        print("onTest : " + message.key);
         
         var container = Container()
         container.add(key: "data", value: "this is iOS message :D")
         let message = Message(key: "native", container: container)
         messenger.publish(message: message)
     }
-    func onTestRecall(channel: Channel){
-        let data = channel.message.container.getString(key: "data") ?? "no data....?"
+    func onTestRecall(message: Message){
+        let data = message.container.getString(key: "data") ?? "no data....?"
         print("onTestRecall : " + data);
         
         var container = Container()
         container.add(key: "data", value: ("RECALL iOS => " + data))
-        let message = Message(key: "testReturn", container: container)
-        channel.reply(message: message)
+        let reply = Message(key: "testReturn", container: container)
+        messenger.publish(message: reply)
     }
     
     

@@ -10,7 +10,7 @@ import Foundation
 public protocol Receivable{
     func setTagRule(all: Tag)
     func matchTag(tag: Tag) -> Bool
-    func onReceive(_ envelop: Channel)
+    func onReceive(_ envelopHolder: EnvelopeHolder)
 }
 
 public class Publisher{

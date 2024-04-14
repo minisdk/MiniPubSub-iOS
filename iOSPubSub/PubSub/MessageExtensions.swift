@@ -18,6 +18,9 @@ public extension Message{
 }
 
 internal extension Envelope{
+    init(_ message: Message){
+        self.message = message
+    }
     init(_ message: Message, senderID: Int32){
         self.message = message
         self.senderID = senderID

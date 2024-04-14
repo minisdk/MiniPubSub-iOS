@@ -10,5 +10,4 @@ import Foundation
 protocol MessageMediator{
     func register(node: ReceivablePublisher)
     func publish(envelope: Envelope, tag: Tag)
-//    func reply(message: Message)
 }

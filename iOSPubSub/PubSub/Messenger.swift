@@ -10,8 +10,8 @@ import Foundation
 public final class Messenger : ReceivablePublisher{
     
     private var allTag: Tag
-    private var handlerMap : [String:(Channel) -> ()]
-    private var conditionHandlers : [((Channel) -> (), (Message) -> Bool)]
+    private var handlerMap : [String:(Message) -> ()]
+    private var conditionHandlers : [((Message) -> (), (Message) -> Bool)]
     
     public override init() {
         allTag = Tag.none
@@ -19,10 +19,6 @@ public final class Messenger : ReceivablePublisher{
         conditionHandlers = []
         super.init()
         MessageManager.shared.mediator.register(node: self)
-    }
-    
-    public func hasKey(key: String) -> Bool {
-        return handlerMap.keys.contains(key)
     }
     
     public func setTagRule(all: Tag) {
@@ -33,18 +29,18 @@ public final class Messenger : ReceivablePublisher{
         return tag.contains(tag: allTag)
     }
     
-    public func onReceive(_ channel: Channel) {
-        
-        let listener = handlerMap[channel.message.key]
-        listener?(channel)
+    public func onReceive(_ envelopeHolder: EnvelopeHolder) {
+        let envelope = envelopeHolder.envelope
+        let listener = handlerMap[envelope.message.key]
+        listener?(envelope.message)
         conditionHandlers.forEach { (handler, condition) in
-            if(condition(channel.message)){
-                handler(channel)
+            if(condition(envelope.message)){
+                handler(envelope.message)
             }
         }
     }
     
-    public func subscribe(key: String, handler : @escaping (Channel) -> ()){
+    public func subscribe(key: String, handler : @escaping (Message) -> ()){
         handlerMap[key] = handler
     }
     
@@ -52,11 +48,11 @@ public final class Messenger : ReceivablePublisher{
         handlerMap.removeValue(forKey: key)
     }
     
-    public func subscribe(handler: @escaping (Channel) -> (), condition: @escaping (Message) -> Bool){
+    public func subscribe(handler: @escaping (Message) -> (), condition: @escaping (Message) -> Bool){
         conditionHandlers.append((handler, condition))
     }
     
-    public func unsubscribe(handler: @escaping (Channel) -> ()){
+    public func unsubscribe(handler: @escaping (Message) -> ()){
         //TODO
     }
 }

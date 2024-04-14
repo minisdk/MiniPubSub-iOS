@@ -13,22 +13,22 @@ import Foundation
 
 @objc public class GameRelay : NSObject{
 
-    private let messenger : Messenger
+    private let bridgeMessenger : Bridge
     private let callback : SwiftCallback
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        messenger = Messenger()
-        messenger.setTagRule(all: Tag.game)
+        bridgeMessenger = Bridge()
+        bridgeMessenger.setTagRule(all: Tag.game)
         super.init()
-        messenger.subscribe(handler: onListen) { _ in true }
+        bridgeMessenger.subscribe(handler: onListen)
     }
     
     @objc public func send(data: Data){
         let envelope = toEnvelope(data: data)
         if(envelope != nil){
             let tag = Tag.named(names: envelope!.tagNames)
-            messenger.publish(envelope: envelope!, tag: tag)
+            bridgeMessenger.publish(envelope: envelope!, tag: tag)
         }
         else{
             print("protobuf deserialize fail.... [game -> native]")
@@ -40,15 +40,18 @@ import Foundation
         return message
     }
     
-    private func onListen(channel: Channel) {
-        if let connection = channel as? ChannelConnection{
-            let data = toData(envlope: connection.envelope)
-            if(data != nil){
-                self.callback.fromSwift(data: data!)
-            }
-            else{
-                print("protobuf serialize fail... [native -> game]")
-            }
+    private func onListen(envelopeHolder: EnvelopeHolder) {
+        var envelope = envelopeHolder.envelope
+        var tag = envelopeHolder.tag
+        tag.names.forEach { name in
+            envelope.tagNames.append(name)
+        }
+        
+        if let data = toData(envlope: envelope){
+            self.callback.fromSwift(data: data)
+        }
+        else{
+            print("protobuf serialize fail... [native -> game]")
         }
         
     }
