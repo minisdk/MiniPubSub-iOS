@@ -14,7 +14,7 @@ class SampleKit{
     
     init() {
         messenger = Messenger()
-        messenger.setBaseTag(Tag.game)
+        messenger.setBasePublishingTag(Tag.game)
         messenger.subscribe(key: "test", handler: onTest)
         messenger.subscribe(key: "testRecall", handler: onTestRecall)
     }

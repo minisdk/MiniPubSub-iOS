@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol Receivable{
-    func setTagRule(all: Tag)
+    func setReceivingRule(all: Tag)
     func matchTag(tag: Tag) -> Bool
     func onReceive(_ envelopHolder: EnvelopeHolder)
 }
@@ -30,7 +30,7 @@ public class Publisher{
     init() {
     }
     
-    public func setBaseTag(_ tag: Tag){
+    public func setBasePublishingTag(_ tag: Tag){
         baseTag = tag
     }
     

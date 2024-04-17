@@ -21,7 +21,7 @@ public final class Messenger : ReceivablePublisher{
         MessageManager.shared.mediator.register(node: self)
     }
     
-    public func setTagRule(all: Tag) {
+    public func setReceivingRule(all: Tag) {
         self.allTag = all;
     }
     

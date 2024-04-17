@@ -19,7 +19,7 @@ import Foundation
     @objc public init(callback: SwiftCallback){
         self.callback = callback
         bridgeMessenger = Bridge()
-        bridgeMessenger.setTagRule(all: Tag.game)
+        bridgeMessenger.setReceivingRule(all: Tag.game)
         super.init()
         bridgeMessenger.subscribe(handler: onListen)
     }

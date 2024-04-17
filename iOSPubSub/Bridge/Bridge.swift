@@ -19,7 +19,7 @@ final internal class Bridge : ReceivablePublisher{
         MessageManager.shared.mediator.register(node: self)
     }
     
-    func setTagRule(all: Tag) {
+    func setReceivingRule(all: Tag) {
         allTag = all
     }
     
