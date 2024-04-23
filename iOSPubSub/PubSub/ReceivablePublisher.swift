@@ -13,13 +13,20 @@ public protocol Receivable{
     func onReceive(_ envelopHolder: EnvelopeHolder)
 }
 
+public enum PublisherType : Int32{
+    case android    = 10000
+    case iOS        = 20000
+    case unity      = 30000
+    case unreal     = 40000
+}
+
 public class Publisher{
     
     private class IDConuter{
         public static let shared = IDConuter()
-        private var id : Int32 = 1
+        private var id : Int32 = PublisherType.iOS.rawValue
         public func getID() -> Int32{
-            id+=2
+            id+=1
             return id
         }
     }

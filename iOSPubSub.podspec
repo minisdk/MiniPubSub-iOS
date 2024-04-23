@@ -2,9 +2,9 @@
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.name          = "iOSPubSub"
-  spec.version       = "0.0.2"
+  spec.version       = "0.1.0"
   spec.summary       = "Core module for NativeBrige between game and iOS."
-  spec.homepage      = "https://github.com/psmjazz/NativeBridge-iOS"
+  spec.homepage      = "https://github.com/psmjazz/NativePubSub-iOS"
   spec.swift_version = "5.0"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -17,7 +17,7 @@
   spec.platform     = :ios, "12.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  spec.source       = { :git => "https://github.com/psmjazz/NativeBridge-iOS.git", :tag => "v#{spec.version}" }
+  spec.source       = { :git => "https://github.com/psmjazz/NativePubSub-iOS.git", :tag => "v#{spec.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   spec.source_files  = "iOSPubSub/**/*.{h,m,mm,swift}"

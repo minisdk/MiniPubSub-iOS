@@ -11,12 +11,12 @@ public final class Messenger : ReceivablePublisher{
     
     private var allTag: Tag
     private var handlerMap : [String:(Message) -> ()]
-    private var conditionHandlers : [((Message) -> (), (Message) -> Bool)]
+    private var handlerList : [(Message) -> ()]
     
     public override init() {
         allTag = Tag.none
         handlerMap = [:]
-        conditionHandlers = []
+        handlerList = []
         super.init()
         MessageManager.shared.mediator.register(node: self)
     }
@@ -33,10 +33,8 @@ public final class Messenger : ReceivablePublisher{
         let envelope = envelopeHolder.envelope
         let listener = handlerMap[envelope.message.key]
         listener?(envelope.message)
-        conditionHandlers.forEach { (handler, condition) in
-            if(condition(envelope.message)){
-                handler(envelope.message)
-            }
+        handlerList.forEach { handler in
+            handler(envelope.message)
         }
     }
     
@@ -48,11 +46,11 @@ public final class Messenger : ReceivablePublisher{
         handlerMap.removeValue(forKey: key)
     }
     
-    public func subscribe(handler: @escaping (Message) -> (), condition: @escaping (Message) -> Bool){
-        conditionHandlers.append((handler, condition))
+    public func subscribe(handler: @escaping (Message) -> ()){
+        handlerList.append(handler)
     }
     
     public func unsubscribe(handler: @escaping (Message) -> ()){
-        //TODO
+        // TODO...
     }
 }
