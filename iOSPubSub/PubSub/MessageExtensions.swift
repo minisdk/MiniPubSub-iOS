@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  MessageExtensions.swift
 //  iOSCore
 //
 //  Created by sangmin park on 1/19/24.
@@ -14,6 +14,21 @@ public extension Message{
     init(key: String, container: Container){
         self.key = key
         self.container = container
+    }
+}
+
+internal extension Envelope{
+    init(_ message: Message){
+        self.message = message
+    }
+    init(_ message: Message, senderID: Int32){
+        self.message = message
+        self.senderID = senderID
+    }
+    init(_ message: Message, senderID: Int32, receiverID: Int32){
+        self.message = message
+        self.senderID = senderID
+        self.receiverID = receiverID
     }
 }
 
