@@ -14,26 +14,17 @@ class SampleKit{
     
     init() {
         messenger = Messenger()
-        messenger.setBasePublishingTag(Tag.game)
-        messenger.subscribe(key: "test", handler: onTest)
-        messenger.subscribe(key: "testRecall", handler: onTestRecall)
+        messenger.subscribe(key: "test", delegate: onTest)
+        messenger.subscribe(key: "testRecall", delegate: onTestRecall)
     }
     
     func onTest(message: Message){
-        print("onTest : " + message.key);
-        
-        var container = Container()
-        container.add(key: "data", value: "this is iOS message :D")
-        let message = Message(key: "native", container: container)
-        messenger.publish(message: message)
+        let reply = Message(key: "native", data: "this is iOS message :D")
+        messenger.publish(message: reply)
     }
     func onTestRecall(message: Message){
-        let data = message.container.getString(key: "data") ?? "no data....?"
-        print("onTestRecall : " + data);
-        
-        var container = Container()
-        container.add(key: "data", value: ("RECALL iOS => " + data))
-        let reply = Message(key: "testReturn", container: container)
+        let intData = message.data as? Int
+        let reply = Message(key: "testReturn", data: "RECALL iOS => \(intData ?? -1)" )
         messenger.publish(message: reply)
     }
     

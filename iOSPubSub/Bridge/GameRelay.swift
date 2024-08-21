@@ -9,57 +9,42 @@ import Foundation
 
 @objc public protocol SwiftCallback{
     func fromSwift(data: Data)
+    func fromSwift(string: String)
 }
 
 @objc public class GameRelay : NSObject{
-
-    private let bridgeMessenger : Bridge
+    
+    //    private let bridgeMessenger : Bridge
+    private let watcher: Watcher
     private let callback : SwiftCallback
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        bridgeMessenger = Bridge()
-        bridgeMessenger.setReceivingRule(all: Tag.game)
+        self.watcher = Watcher()
         super.init()
-        bridgeMessenger.subscribe(handler: onListen)
+        self.watcher.watch(delegate: onWatch)
     }
     
     @objc public func send(data: Data){
-        let envelope = toEnvelope(data: data)
-        if(envelope != nil){
-            let tag = Tag.named(names: envelope!.tagNames)
-            bridgeMessenger.publish(envelope: envelope!, tag: tag)
+        let message = Message(withData: data)
+        watcher.publish(message: message)
+    }
+    
+    @objc public func send(string: String){
+        if let data = string.data(using: .utf8){
+            watcher.publish(message: Message(withData: data))
         }
+    }
+    
+    private func onWatch(message: Message){
+        guard let serialized = message.serialize() 
         else{
-            print("protobuf deserialize fail.... [game -> native]")
-        }
-    }
-    
-    private func toEnvelope(data: Data) -> Envelope?{
-        let message = try? Envelope(serializedData: data)
-        return message
-    }
-    
-    private func onListen(envelopeHolder: EnvelopeHolder) {
-        var envelope = envelopeHolder.envelope
-        var tag = envelopeHolder.tag
-        tag.names.forEach { name in
-            envelope.tagNames.append(name)
+            return
         }
         
-        if let data = toData(envlope: envelope){
-            self.callback.fromSwift(data: data)
+        if let serializedString = String(data: serialized, encoding: .utf8) {
+            callback.fromSwift(string: serializedString)
         }
-        else{
-            print("protobuf serialize fail... [native -> game]")
-        }
-        
     }
-    
-    private func toData(envlope : Envelope) -> Data?{
-        let data = try? envlope.serializedData()
-        return data;
-    }
-    
 
 }

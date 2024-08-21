@@ -9,38 +9,57 @@ import Foundation
 
 class MessageMediatorImpl : MessageMediator{
     
-    private var idFilter : [Int32 : ReceivablePublisher]
+    private var receiverDic: [String: [Receiver]]
+    private var watchers: [Receiver]
     
     init(){
-        idFilter = [:]
+        receiverDic = [:]
+        watchers = []
     }
     
-    func register(node: ReceivablePublisher) {
-        idFilter[node.id] = node
-    }
-    
-    func publish(envelope: Envelope, tag: Tag){
-        if(envelope.hasReceiverID){
-            if let receiver = idFilter[envelope.receiverID]{
-                var envelopeHolder = EnvelopeHolder(envelope: envelope, tag: tag)
-                receiver.onReceive(envelopeHolder)
-            }
-            else
-            {
-                self.broadcast(envelope, tag)
-            }
+    func register(receiver: Receiver){
+        if var receivers = receiverDic[receiver.key]{
+            receivers.append(receiver)
         }
         else{
-            self.broadcast(envelope, tag)
+            let receivers = [receiver]
+            receiverDic[receiver.key] = receivers
         }
     }
     
-    private func broadcast(_ envelope: Envelope, _ tag: Tag){
-        idFilter.values.filter{node in
-            node.matchTag(tag: tag) && node.id != envelope.senderID
-        }.forEach { node in
-            var envelopeHolder = EnvelopeHolder(envelope: envelope, tag: tag)
-            node.onReceive(envelopeHolder)
+    func unregister(id: Int, key: String) {
+        var receivers = receiverDic[key]
+        receivers?.removeAll{ receiver in
+            receiver.nodeId == id
         }
     }
+    
+    func watch(receiver: Receiver) {
+        watchers.append(receiver)
+    }
+    
+    func unwatch(id: Int) {
+        watchers.removeAll{ receiver in
+            receiver.nodeId == id
+        }
+    }
+    
+    func publish(message: Message, publisherId: Int) {
+        guard(message.key != nil) else{
+            return
+        }
+        let receivers = receiverDic[message.key!]
+        receivers?.forEach{ receiver in
+            if(receiver.nodeId != publisherId){
+                receiver.delegate(message)
+            }
+        }
+        
+        watchers.forEach { receiver in
+            if(receiver.nodeId != publisherId){
+                receiver.delegate(message)
+            }
+        }
+    }
+    
 }

@@ -10,13 +10,23 @@
 
 extern "C"
 {
-    void __iOSInitialize(NativeDataCallback unityCallback)
+    void __iOSInitializeWithString(NativeStringCallback stringCallback)
+    {
+        [[ObjcSide sharedInstance] initializeWithStringCallback:stringCallback];
+    }
+
+    void __iOSInitialize(NativeBytesCallback unityCallback)
     {
         [[ObjcSide sharedInstance] initializeWith:unityCallback];
     }
 
-    void __iOSSend(const Byte* bytes, int length)
+    void __iOSByteSend(const Byte* bytes, int length)
     {
         [[ObjcSide sharedInstance] sendToNative:bytes withLength:length];
+    }
+
+    void __iOSStringSend(const char* cString)
+    {
+        [[ObjcSide sharedInstance] sendToNativeWithString:cString];
     }
 }

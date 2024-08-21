@@ -7,50 +7,26 @@
 
 import Foundation
 
-public final class Messenger : ReceivablePublisher{
+public final class Messenger : Subscribable{
+        
+    private let publisher: Publisher
     
-    private var allTag: Tag
-    private var handlerMap : [String:(Message) -> ()]
-    private var handlerList : [(Message) -> ()]
+    public var id: Int
     
-    public override init() {
-        allTag = Tag.none
-        handlerMap = [:]
-        handlerList = []
-        super.init()
-        MessageManager.shared.mediator.register(node: self)
+    public init(){
+        self.publisher = Publisher()
+        self.id = self.publisher.id
     }
     
-    public func setReceivingRule(all: Tag) {
-        self.allTag = all;
+    public func subscribe(key: String,  delegate: @escaping ReceiverDelegate) {
+        MessageManager.shared.mediator.register(receiver: Receiver(nodeId: id, key: key, delegate: delegate))
     }
     
-    public func matchTag(tag: Tag) -> Bool {
-        return tag.contains(tag: allTag)
+    public func unsubscribe(key: String) {
+        MessageManager.shared.mediator.unregister(id: self.id, key: key)
     }
     
-    public func onReceive(_ envelopeHolder: EnvelopeHolder) {
-        let envelope = envelopeHolder.envelope
-        let listener = handlerMap[envelope.message.key]
-        listener?(envelope.message)
-        handlerList.forEach { handler in
-            handler(envelope.message)
-        }
-    }
-    
-    public func subscribe(key: String, handler : @escaping (Message) -> ()){
-        handlerMap[key] = handler
-    }
-    
-    public func unsubscribe(key: String){
-        handlerMap.removeValue(forKey: key)
-    }
-    
-    public func subscribe(handler: @escaping (Message) -> ()){
-        handlerList.append(handler)
-    }
-    
-    public func unsubscribe(handler: @escaping (Message) -> ()){
-        // TODO...
+    public func publish(message: Message){
+        publisher.publish(message: message)
     }
 }

@@ -20,7 +20,12 @@
     return shard;
 }
 
-- (void)initializeWith:(NativeDataCallback)bridgeCallback {
+- (void)initializeWithStringCallback:(NativeStringCallback)stringCallback{
+    gameRelay = [[GameRelay alloc] initWithCallback:self];
+    self->stringCallback = stringCallback;
+}
+
+- (void)initializeWith:(NativeBytesCallback)bridgeCallback {
     gameRelay = [[GameRelay alloc] initWithCallback:self];
     
     self->dataCallback = bridgeCallback;
@@ -30,8 +35,17 @@
     NSData *nsData = [NSData dataWithBytes:data length:length];
     [gameRelay sendWithData:nsData];
 }
+- (void)sendToNativeWithString:(const char *)cString{
+    NSString *messageString = [[NSString alloc] initWithUTF8String:cString];
+    [gameRelay sendWithString:messageString];
+}
 
 - (void)fromSwiftWithData:(NSData *)data{
     self->dataCallback([data bytes], (int)data.length);
 }
+
+- (void)fromSwiftWithString:(NSString *)string{
+    self->stringCallback([string UTF8String]);
+}
+
 @end

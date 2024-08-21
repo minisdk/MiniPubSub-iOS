@@ -8,6 +8,9 @@
 import Foundation
 
 protocol MessageMediator{
-    func register(node: ReceivablePublisher)
-    func publish(envelope: Envelope, tag: Tag)
+    func register(receiver: Receiver)
+    func unregister(id: Int, key: String)
+    func publish(message: Message, publisherId: Int)
+    func watch(receiver: Receiver)
+    func unwatch(id: Int)
 }

@@ -11,21 +11,25 @@
 #import <Foundation/Foundation.h>
 
 //typedef void (*NativeMessageCallback)(const char* data);
-typedef void (*NativeDataCallback)(const Byte* data, int length);
+typedef void (*NativeBytesCallback)(const Byte* data, int length);
+typedef void (*NativeStringCallback)(const char* str);
 
 @class GameRelay;
 @protocol SwiftCallback;
 
 @interface ObjcSide : NSObject<SwiftCallback>
 {
-    NativeDataCallback dataCallback;
+    NativeBytesCallback dataCallback;
+    NativeStringCallback stringCallback;
     GameRelay* gameRelay;
 }
 
 +(instancetype) sharedInstance;
 
--(void) initializeWith : (NativeDataCallback) bridgeCallback;
+-(void) initializeWithStringCallback:(NativeStringCallback) stringCallback;
+-(void) initializeWith : (NativeBytesCallback) bridgeCallback;
 -(void) sendToNative : (const Byte*) data withLength:(int) length;
+-(void) sendToNativeWithString: (const char*) cString;
 @end
 
 #endif /* ObjcSide_h */

@@ -7,54 +7,56 @@
 
 import Foundation
 
-public protocol Receivable{
-    func setReceivingRule(all: Tag)
-    func matchTag(tag: Tag) -> Bool
-    func onReceive(_ envelopHolder: EnvelopeHolder)
+public class IDConuter{
+    public static let shared = IDConuter()
+    private var id : Int = PublisherType.iOS.rawValue
+    public func getID() -> Int{
+        id+=1
+        return id
+    }
 }
 
-public enum PublisherType : Int32{
+//public protocol Receivable{
+//    func setReceivingRule(all: Tag)
+//    func matchTag(tag: Tag) -> Bool
+//    func onReceive(_ envelopHolder: EnvelopeHolder)
+//}
+
+public protocol Node{
+    var id: Int { get }
+}
+
+public typealias ReceiverDelegate = (Message) -> ()
+
+struct Receiver{
+    let nodeId: Int
+    let key: String
+    let delegate: ReceiverDelegate
+}
+
+public protocol Subscribable : Node{
+    func subscribe(key: String, delegate: @escaping ReceiverDelegate)
+    func unsubscribe(key: String)
+}
+
+public protocol Watchable : Node{
+    func watch(delegate: @escaping ReceiverDelegate)
+    func unwatch()
+}
+
+
+public enum PublisherType : Int{
     case android    = 10000
     case iOS        = 20000
-    case unity      = 30000
-    case unreal     = 40000
+    case game       = 30000
 }
 
-public class Publisher{
+public class Publisher : Node{
     
-    private class IDConuter{
-        public static let shared = IDConuter()
-        private var id : Int32 = PublisherType.iOS.rawValue
-        public func getID() -> Int32{
-            id+=1
-            return id
-        }
-    }
+    public var id: Int = IDConuter.shared.getID()
 
-    private var baseTag = Tag.none
-    public let id: Int32 = IDConuter.shared.getID()
-    
-    init() {
-    }
-    
-    public func setBasePublishingTag(_ tag: Tag){
-        baseTag = tag
-    }
     
     public func publish(message: Message){
-        let envelope = Envelope(message, senderID: self.id)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: baseTag)
-    }
-    
-    public func publish(message: Message, tag: Tag){
-        let envelope = Envelope(message, senderID: self.id)
-        let joined = baseTag.join(tag)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: joined)
-    }
-    internal func publish(envelope: Envelope, tag: Tag){
-        let joined = baseTag.join(tag)
-        MessageManager.shared.mediator.publish(envelope: envelope, tag: joined)
+        MessageManager.shared.mediator.publish(message: message, publisherId: self.id)
     }
 }
-
-public typealias ReceivablePublisher = Publisher & Receivable

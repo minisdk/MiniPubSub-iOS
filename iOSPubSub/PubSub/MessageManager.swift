@@ -15,8 +15,5 @@ public class MessageManager{
     }
     
     let mediator : MessageMediator
-    
-    public func register(node: ReceivablePublisher){
-        mediator.register(node: node)
-    }
+
 }
