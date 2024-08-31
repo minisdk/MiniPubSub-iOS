@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import iOSPubSub
+import MiniPubSub
 
 class SampleKit{
     

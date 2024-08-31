@@ -1,13 +1,13 @@
 //
 //  Messenger.swift
-//  iOSCore
+//  MiniPubSub
 //
 //  Created by sangmin park on 1/21/24.
 //
 
 import Foundation
 
-public final class Messenger : Subscribable{
+public final class Messenger : Node{
         
     private let publisher: Publisher
     

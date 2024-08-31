@@ -1,6 +1,6 @@
 //  Message.swift
 //
-//  iOSPubSub
+//  MiniPubSub
 //
 //  Created by sangmin park on 7/21/24.
 //

@@ -1,5 +1,14 @@
 # Changelog
 
+
+## [unreleased]
+
+### Changed
+- Rename iOS package iOSPubSub to MiniPubSub
+
+### Removed
+- Tag removed
+
 ## [0.1.0] - 2024-04-24
 
 ### Added

@@ -1,13 +1,13 @@
 //
 //  Watcher.swift
-//  iOSPubSub
+//  MiniPubSub
 //
 //  Created by sangmin park on 7/27/24.
 //
 
 import Foundation
 
-public class Watcher: Watchable{
+public class Watcher: Node{
 
     private let publisher: Publisher
     

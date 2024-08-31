@@ -11,6 +11,6 @@
       location = "group:sample/sample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:iOSPubSub.xcodeproj">
+      location = "group:MiniPubSub.xcodeproj">
    </FileRef>
 </Workspace>

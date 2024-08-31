@@ -1,6 +1,6 @@
 //
 //  MessageManager.swift
-//  iOSCore
+//  MiniPubSub
 //
 //  Created by sangmin park on 1/19/24.
 //

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ObjcSide.h"
-#import <iOSPubSub/iOSPubSub-Swift.h>
+#import <MiniPubSub/MiniPubSub-Swift.h>
 
 @implementation ObjcSide : NSObject
 + (instancetype)sharedInstance{

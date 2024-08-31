@@ -1,14 +1,14 @@
 //
-//  iOSPubSubTests.swift
-//  iOSPubSubTests
+//  MiniPubSubTests.swift
+//  MiniPubSubTests
 //
 //  Created by sangmin park on 7/24/24.
 //
 
 import XCTest
-@testable import iOSPubSub
+@testable import MiniPubSub
 
-final class iOSPubSubTests: XCTestCase {
+final class MiniPubSubTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

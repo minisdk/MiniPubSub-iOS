@@ -12,18 +12,21 @@
 		C43B5B2E2C4FEBB100D1C9C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43B5B2D2C4FEBB100D1C9C1 /* Assets.xcassets */; };
 		C43B5B312C4FEBB100D1C9C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43B5B302C4FEBB100D1C9C1 /* Preview Assets.xcassets */; };
 		C43B5B382C4FEC9200D1C9C1 /* PubSubTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B5B372C4FEC9200D1C9C1 /* PubSubTester.swift */; };
-		C43B5B3B2C4FF26100D1C9C1 /* iOSPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43B5B3A2C4FF26100D1C9C1 /* iOSPubSub.framework */; };
-		C43B5B3C2C4FF26100D1C9C1 /* iOSPubSub.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C43B5B3A2C4FF26100D1C9C1 /* iOSPubSub.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4E1B4182C836C1C00381FE8 /* sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E1B4172C836C1C00381FE8 /* sample.framework */; };
+		C4E1B4192C836C1C00381FE8 /* sample.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E1B4172C836C1C00381FE8 /* sample.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4E1B41A2C836C2500381FE8 /* MiniPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E1B4132C836C1800381FE8 /* MiniPubSub.framework */; };
+		C4E1B41B2C836C2500381FE8 /* MiniPubSub.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E1B4132C836C1800381FE8 /* MiniPubSub.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C43B5B3D2C4FF26100D1C9C1 /* Embed Frameworks */ = {
+		C4E1B4162C836C1800381FE8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C43B5B3C2C4FF26100D1C9C1 /* iOSPubSub.framework in Embed Frameworks */,
+				C4E1B41B2C836C2500381FE8 /* MiniPubSub.framework in Embed Frameworks */,
+				C4E1B4192C836C1C00381FE8 /* sample.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,7 +40,8 @@
 		C43B5B2D2C4FEBB100D1C9C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C43B5B302C4FEBB100D1C9C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C43B5B372C4FEC9200D1C9C1 /* PubSubTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PubSubTester.swift; sourceTree = "<group>"; };
-		C43B5B3A2C4FF26100D1C9C1 /* iOSPubSub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSPubSub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E1B4132C836C1800381FE8 /* MiniPubSub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MiniPubSub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E1B4172C836C1C00381FE8 /* sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C43B5B3B2C4FF26100D1C9C1 /* iOSPubSub.framework in Frameworks */,
+				C4E1B41A2C836C2500381FE8 /* MiniPubSub.framework in Frameworks */,
+				C4E1B4182C836C1C00381FE8 /* sample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +97,8 @@
 		C43B5B392C4FF26100D1C9C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C43B5B3A2C4FF26100D1C9C1 /* iOSPubSub.framework */,
+				C4E1B4172C836C1C00381FE8 /* sample.framework */,
+				C4E1B4132C836C1800381FE8 /* MiniPubSub.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,7 +113,7 @@
 				C43B5B222C4FEBB000D1C9C1 /* Sources */,
 				C43B5B232C4FEBB000D1C9C1 /* Frameworks */,
 				C43B5B242C4FEBB000D1C9C1 /* Resources */,
-				C43B5B3D2C4FF26100D1C9C1 /* Embed Frameworks */,
+				C4E1B4162C836C1800381FE8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
