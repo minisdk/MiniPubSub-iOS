@@ -8,8 +8,7 @@
 import Foundation
 
 @objc public protocol SwiftCallback{
-    func fromSwift(data: Data)
-    func fromSwift(string: String)
+    func fromSwift(info: String, data: String)
 }
 
 @objc public class GameRelay : NSObject{
@@ -25,26 +24,20 @@ import Foundation
         self.watcher.watch(delegate: onWatch)
     }
     
-    @objc public func send(data: Data){
-        let message = Message(withData: data)
+    @objc public func send(info: String, data: String){
+        guard let message = try? Message(infoJson: info, dataJson: data) else{
+            print("MessageInfo decode error : " + info)
+            return
+        }
         watcher.publish(message: message)
     }
     
-    @objc public func send(string: String){
-        if let data = string.data(using: .utf8){
-            watcher.publish(message: Message(withData: data))
-        }
-    }
-    
     private func onWatch(message: Message){
-        guard let serialized = message.serialize() 
-        else{
+        guard let encoded = try? message.encodeInfo() else{
+            print("MessageInfo encode error : " + message.info.key)
             return
         }
-        
-        if let serializedString = String(data: serialized, encoding: .utf8) {
-            callback.fromSwift(string: serializedString)
-        }
+        callback.fromSwift(info: encoded, data: message.json)
     }
 
 }

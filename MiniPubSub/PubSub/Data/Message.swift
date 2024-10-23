@@ -10,34 +10,38 @@ import Foundation
 
 //public typealias Message = [String : Any]
 
+public struct MessageInfo: Codable{
+    public let key: String
+}
+
 public class Message{
     
-    private let dic: [String: Any]
+    public let info: MessageInfo
+    public let json: String
     
-    init(withData data: Data){
-        self.dic = (try? JSONSerialization.jsonObject(with: data) as? [String: Any]) ?? [:]
+    public init(info: MessageInfo, json: String){
+        self.info = info
+        self.json = json
     }
     
-    func serialize() -> Data?{
-        try? JSONSerialization.data(withJSONObject: self.dic)
-    }
-    
-    public init(key: String, data: Any){
-        self.dic = [
-            "Key" : key,
-            "Data" : data
-        ]
-    }
-    public var key: String?{
-        get{
-            dic["Key"] as? String
+    public init<T: Codable>(key: String, data: T){
+        self.info = MessageInfo(key: key);
+        guard let encoded = try? JSONEncoder().encode(data) , let dataJson = String(data:encoded, encoding: .utf8) else{
+            self.json = ""
+            return
         }
+        self.json = dataJson
+        
     }
     
-    public var data: Any?{
-        get{
-            dic["Data"]
+    public var key: String{
+        return self.info.key
+    }
+    
+    public func data<T: Codable>() -> T?{
+        guard let data = self.json.data(using: .utf8), let decoded = try? JSONDecoder().decode(T.self, from: data) else{
+            return nil
         }
+        return decoded
     }
-    
 }

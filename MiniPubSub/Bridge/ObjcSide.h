@@ -9,27 +9,23 @@
 #define ObjcSide_h
 
 #import <Foundation/Foundation.h>
+#import <MiniPubSub/MiniPubSub-Swift.h>
 
-//typedef void (*NativeMessageCallback)(const char* data);
-typedef void (*NativeBytesCallback)(const Byte* data, int length);
-typedef void (*NativeStringCallback)(const char* str);
+typedef void (*NativeMessageCallback)(const char* infoCStr, const char* dataCStr);
 
-@class GameRelay;
 @protocol SwiftCallback;
+@class GameRelay;
 
 @interface ObjcSide : NSObject<SwiftCallback>
 {
-    NativeBytesCallback dataCallback;
-    NativeStringCallback stringCallback;
+    NativeMessageCallback messageCallback;
     GameRelay* gameRelay;
 }
 
 +(instancetype) sharedInstance;
 
--(void) initializeWithStringCallback:(NativeStringCallback) stringCallback;
--(void) initializeWith : (NativeBytesCallback) bridgeCallback;
--(void) sendToNative : (const Byte*) data withLength:(int) length;
--(void) sendToNativeWithString: (const char*) cString;
+-(void) initializeWith: (NativeMessageCallback) messageCallback;
+-(void) sendToNativeWithInfo: (const char*) infoCStr AndData: (const char*) dataCStr;
 @end
 
 #endif /* ObjcSide_h */

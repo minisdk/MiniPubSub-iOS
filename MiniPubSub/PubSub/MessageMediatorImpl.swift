@@ -45,10 +45,7 @@ class MessageMediatorImpl : MessageMediator{
     }
     
     func publish(message: Message, publisherId: Int) {
-        guard(message.key != nil) else{
-            return
-        }
-        let receivers = receiverDic[message.key!]
+        let receivers = receiverDic[message.info.key]
         receivers?.forEach{ receiver in
             if(receiver.nodeId != publisherId){
                 receiver.delegate(message)

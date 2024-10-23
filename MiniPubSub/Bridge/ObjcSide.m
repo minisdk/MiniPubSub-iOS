@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ObjcSide.h"
-#import <MiniPubSub/MiniPubSub-Swift.h>
 
 @implementation ObjcSide : NSObject
 + (instancetype)sharedInstance{
@@ -20,32 +19,19 @@
     return shard;
 }
 
-- (void)initializeWithStringCallback:(NativeStringCallback)stringCallback{
+- (void)initializeWith:(NativeMessageCallback) messageCallback{
     gameRelay = [[GameRelay alloc] initWithCallback:self];
-    self->stringCallback = stringCallback;
+    self->messageCallback = messageCallback;
 }
 
-- (void)initializeWith:(NativeBytesCallback)bridgeCallback {
-    gameRelay = [[GameRelay alloc] initWithCallback:self];
-    
-    self->dataCallback = bridgeCallback;
+- (void)sendToNativeWithInfo:(const char *)infoCStr AndData:(const char *)dataCStr {
+    NSString *messageInfo = [[NSString alloc] initWithUTF8String:infoCStr];
+    NSString *messageJson = [[NSString alloc] initWithUTF8String:dataCStr];
+    [gameRelay sendWithInfo:messageInfo data:messageJson];
 }
 
-- (void)sendToNative:(const Byte *)data withLength:(int)length{
-    NSData *nsData = [NSData dataWithBytes:data length:length];
-    [gameRelay sendWithData:nsData];
-}
-- (void)sendToNativeWithString:(const char *)cString{
-    NSString *messageString = [[NSString alloc] initWithUTF8String:cString];
-    [gameRelay sendWithString:messageString];
-}
-
-- (void)fromSwiftWithData:(NSData *)data{
-    self->dataCallback([data bytes], (int)data.length);
-}
-
-- (void)fromSwiftWithString:(NSString *)string{
-    self->stringCallback([string UTF8String]);
+- (void)fromSwiftWithInfo:(NSString * _Nonnull)infoStr data:(NSString * _Nonnull)dataStr {
+    self->messageCallback([infoStr UTF8String], [dataStr UTF8String]);
 }
 
 @end
