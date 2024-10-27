@@ -9,11 +9,11 @@ import Foundation
 import MiniPubSub
 
 struct ToastData : Codable{
-    let ToastMessage: String;
-    let ToastDuration: Int;
+    let toastMessage: String;
+    let toastDuration: Int;
 }
 struct ToastResult : Codable{
-    let ToastShowCount: Int;
+    let toastShowCount: Int;
 }
 
 class SampleKit{
@@ -24,13 +24,13 @@ class SampleKit{
     init() {
         messenger = Messenger()
         messenger.subscribe(key: "SEND_TOAST") { message in
-            print("[pubsubtest] key : \(message.key) message : \(message)")
+            print("[pubsubtest] key : \(message.key) message : \(message.json)")
             
             let toastData: ToastData? = message.data()
-            print("[pubsubtest] toast data message : \(toastData?.ToastMessage ?? "??") and duration : \(toastData?.ToastDuration ?? -1)")
+            print("[pubsubtest] toast data message : \(toastData?.toastMessage ?? "??") and duration : \(toastData?.toastDuration ?? -1)")
             
             self.toastCount += 1
-            let result = ToastResult(ToastShowCount: self.toastCount)
+            let result = ToastResult(toastShowCount: self.toastCount)
             self.messenger.publish(message: Message(key: "SEND_TOAST_RESULT", data: result))
         }
     }
