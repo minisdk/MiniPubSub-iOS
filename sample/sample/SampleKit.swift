@@ -13,7 +13,7 @@ struct ToastData : Codable{
     let toastDuration: Int;
 }
 struct ToastResult : Codable{
-    let toastShowCount: Int;
+    let toastCount: Int;
 }
 
 class SampleKit{
@@ -30,7 +30,7 @@ class SampleKit{
             print("[pubsubtest] toast data message : \(toastData?.toastMessage ?? "??") and duration : \(toastData?.toastDuration ?? -1)")
             
             self.toastCount += 1
-            let result = ToastResult(toastShowCount: self.toastCount)
+            let result = ToastResult(toastCount: self.toastCount)
             self.messenger.publish(message: Message(key: "SEND_TOAST_RESULT", data: result))
         }
     }
