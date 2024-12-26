@@ -13,12 +13,14 @@
 		C43B5B492C5146B700D1C9C1 /* MiniPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B08F4B2B5A3E7A0082917E /* MiniPubSub.framework */; };
 		C44D30872CC9255700C97303 /* MessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D30862CC9255700C97303 /* MessageExtension.swift */; };
 		C45AD1BC2CF8471E00355598 /* ModuleBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AD1BB2CF8471E00355598 /* ModuleBase.swift */; };
-		C45AD1BE2CF8476000355598 /* ModuleHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AD1BD2CF8476000355598 /* ModuleHolder.swift */; };
+		C45AD1BE2CF8476000355598 /* ModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AD1BD2CF8476000355598 /* ModuleManager.swift */; };
+		C4748DA62D1BE5A60016BF7E /* ModuleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4748DA52D1BE5A60016BF7E /* ModuleLoader.swift */; };
+		C4748DB12D1D9AC10016BF7E /* ModuleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4748DB02D1D9AC10016BF7E /* ModuleLoader.m */; };
+		C4748DB32D1DA2460016BF7E /* ModuleLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = C4748DAF2D1D995B0016BF7E /* ModuleLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
 		C49F99652B5B7B1400047CAA /* GameRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* GameRelay.swift */; };
 		C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F99682B5B7EF000047CAA /* ObjcSide.m */; };
 		C49F99902B5CB1BF00047CAA /* Messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F998F2B5CB1BF00047CAA /* Messenger.swift */; };
-		C4B08F4F2B5A3E7A0082917E /* iOSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C4B08F4E2B5A3E7A0082917E /* iOSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C4B08F612B5A47520082917E /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F602B5A47520082917E /* Node.swift */; };
 		C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F632B5A49D40082917E /* MessageMediator.swift */; };
 		C4B08F662B5A4A270082917E /* MessageMediatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B08F652B5A4A270082917E /* MessageMediatorImpl.swift */; };
@@ -44,14 +46,16 @@
 		C43B5B472C5146B700D1C9C1 /* MiniPubSubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPubSubTests.swift; sourceTree = "<group>"; };
 		C44D30862CC9255700C97303 /* MessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtension.swift; sourceTree = "<group>"; };
 		C45AD1BB2CF8471E00355598 /* ModuleBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBase.swift; sourceTree = "<group>"; };
-		C45AD1BD2CF8476000355598 /* ModuleHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleHolder.swift; sourceTree = "<group>"; };
+		C45AD1BD2CF8476000355598 /* ModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleManager.swift; sourceTree = "<group>"; };
+		C4748DA52D1BE5A60016BF7E /* ModuleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleLoader.swift; sourceTree = "<group>"; };
+		C4748DAF2D1D995B0016BF7E /* ModuleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleLoader.h; sourceTree = "<group>"; };
+		C4748DB02D1D9AC10016BF7E /* ModuleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleLoader.m; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C49F99642B5B7B1400047CAA /* GameRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRelay.swift; sourceTree = "<group>"; };
 		C49F99672B5B7E9900047CAA /* ObjcSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcSide.h; sourceTree = "<group>"; };
 		C49F99682B5B7EF000047CAA /* ObjcSide.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcSide.m; sourceTree = "<group>"; };
 		C49F998F2B5CB1BF00047CAA /* Messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messenger.swift; sourceTree = "<group>"; };
 		C4B08F4B2B5A3E7A0082917E /* MiniPubSub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MiniPubSub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4B08F4E2B5A3E7A0082917E /* iOSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSCore.h; sourceTree = "<group>"; };
 		C4B08F602B5A47520082917E /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		C4B08F632B5A49D40082917E /* MessageMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediator.swift; sourceTree = "<group>"; };
 		C4B08F652B5A4A270082917E /* MessageMediatorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediatorImpl.swift; sourceTree = "<group>"; };
@@ -98,7 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				C45AD1BB2CF8471E00355598 /* ModuleBase.swift */,
-				C45AD1BD2CF8476000355598 /* ModuleHolder.swift */,
+				C45AD1BD2CF8476000355598 /* ModuleManager.swift */,
+				C4748DA52D1BE5A60016BF7E /* ModuleLoader.swift */,
+				C4748DAF2D1D995B0016BF7E /* ModuleLoader.h */,
+				C4748DB02D1D9AC10016BF7E /* ModuleLoader.m */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -127,7 +134,6 @@
 				C45AD1BA2CF8469000355598 /* Module */,
 				C4B08F5B2B5A43870082917E /* PubSub */,
 				C4B08F552B5A3E900082917E /* Bridge */,
-				C4B08F4E2B5A3E7A0082917E /* iOSCore.h */,
 			);
 			path = MiniPubSub;
 			sourceTree = "<group>";
@@ -166,8 +172,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4B08F4F2B5A3E7A0082917E /* iOSCore.h in Headers */,
 				C4FC07052CB41B5C006EF3EE /* ObjcSide.h in Headers */,
+				C4748DB32D1DA2460016BF7E /* ModuleLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +290,14 @@
 				C41348D12C54FC9300F2C4F2 /* Watcher.swift in Sources */,
 				C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */,
 				C49F99902B5CB1BF00047CAA /* Messenger.swift in Sources */,
+				C4748DB12D1D9AC10016BF7E /* ModuleLoader.m in Sources */,
+				C4748DA62D1BE5A60016BF7E /* ModuleLoader.swift in Sources */,
 				C4B08F662B5A4A270082917E /* MessageMediatorImpl.swift in Sources */,
 				C4E1B40E2C83624D00381FE8 /* Receiver.swift in Sources */,
 				C4B08F612B5A47520082917E /* Node.swift in Sources */,
 				C49F99652B5B7B1400047CAA /* GameRelay.swift in Sources */,
 				C43B5AF12C4D4BC100D1C9C1 /* Message.swift in Sources */,
-				C45AD1BE2CF8476000355598 /* ModuleHolder.swift in Sources */,
+				C45AD1BE2CF8476000355598 /* ModuleManager.swift in Sources */,
 				C4E1B40C2C8361D100381FE8 /* Publisher.swift in Sources */,
 				C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */,
 			);

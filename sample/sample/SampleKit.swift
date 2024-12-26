@@ -17,17 +17,18 @@ struct ToastResult : Codable{
     let toastCount: Int;
 }
 
-class SampleKit : ModuleBase{
-    func getName() -> String {
-        return String(describing: type(of: self))
+@objc public class SampleKit : NSObject, ModuleBase{
+    @objc public func getName() -> String {
+        return "SampleKit"
     }
-    
     
     let messenger: Messenger
     
     var toastCount = 0
-    init() {
+    public override init() {
         messenger = Messenger()
+        super.init()
+        
         messenger.subscribe(key: "SEND_TOAST") { message in
             print("[pubsubtest] key : \(message.key) message : \(message.json)")
             

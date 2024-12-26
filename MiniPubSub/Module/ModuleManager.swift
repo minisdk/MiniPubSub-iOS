@@ -7,15 +7,16 @@
 
 import Foundation
 
-@objc public class ModuleHolder : NSObject{
-    static public let shared : ModuleHolder = {
-        let instance = ModuleHolder()
+@objcMembers public class ModuleManager : NSObject{
+    static public let shared : ModuleManager = {
+        let instance = ModuleManager()
         return instance
     }()
     
     private var moduleMap : [String:ModuleBase]
     private override init() {
         self.moduleMap = [:]
+        super.init()
     }
     
     public func add(name moduleName: String, module moduleBase: ModuleBase){

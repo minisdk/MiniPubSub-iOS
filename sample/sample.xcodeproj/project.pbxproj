@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C44F2AEB2B9703350076342B /* sample.h in Headers */ = {isa = PBXBuildFile; fileRef = C44F2AEA2B9703350076342B /* sample.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C44F2AF42B97036A0076342B /* SampleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F2AF12B97036A0076342B /* SampleKit.swift */; };
-		C45AD1C22CF84BE800355598 /* SampleKitLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AD1C12CF84BE800355598 /* SampleKitLoader.swift */; };
+		C4748DB52D1DA2870016BF7E /* SampleKitLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = C4748DB42D1DA2870016BF7E /* SampleKitLoader.m */; };
+		C4748DB82D1DA6350016BF7E /* SampleKitLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = C4748DB22D1D9EA40016BF7E /* SampleKitLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C4E1B4102C836BDD00381FE8 /* MiniPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E1B40F2C836BDD00381FE8 /* MiniPubSub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C44F2AE72B9703350076342B /* sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C44F2AEA2B9703350076342B /* sample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sample.h; sourceTree = "<group>"; };
 		C44F2AF12B97036A0076342B /* SampleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleKit.swift; sourceTree = "<group>"; };
-		C45AD1C12CF84BE800355598 /* SampleKitLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleKitLoader.swift; sourceTree = "<group>"; };
+		C4748DB22D1D9EA40016BF7E /* SampleKitLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleKitLoader.h; sourceTree = "<group>"; };
+		C4748DB42D1DA2870016BF7E /* SampleKitLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleKitLoader.m; sourceTree = "<group>"; };
 		C4E1B40F2C836BDD00381FE8 /* MiniPubSub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MiniPubSub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,8 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				C44F2AF12B97036A0076342B /* SampleKit.swift */,
-				C44F2AEA2B9703350076342B /* sample.h */,
-				C45AD1C12CF84BE800355598 /* SampleKitLoader.swift */,
+				C4748DB22D1D9EA40016BF7E /* SampleKitLoader.h */,
+				C4748DB42D1DA2870016BF7E /* SampleKitLoader.m */,
 			);
 			path = sample;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44F2AEB2B9703350076342B /* sample.h in Headers */,
+				C4748DB82D1DA6350016BF7E /* SampleKitLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C45AD1C22CF84BE800355598 /* SampleKitLoader.swift in Sources */,
 				C44F2AF42B97036A0076342B /* SampleKit.swift in Sources */,
+				C4748DB52D1DA2870016BF7E /* SampleKitLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +309,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -343,6 +344,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

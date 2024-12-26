@@ -8,9 +8,8 @@
 import Foundation
 import MiniPubSub
 
-@objc public class SampleKitLoader : NSObject{
-    @objc public static func loadModule(){
-        let sampleKit = SampleKit()
-        ModuleHolder.shared.add(name: sampleKit.getName(), module: sampleKit)
+@objc public class SampleKitLoader : ModuleLoader {
+    override public func load() -> ModuleBase? {
+        return SampleKit()
     }
 }

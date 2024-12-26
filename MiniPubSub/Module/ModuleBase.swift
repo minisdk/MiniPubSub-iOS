@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol ModuleBase{
-    func getName() -> String
+@objc public protocol ModuleBase{
+    @objc func getName() -> String
 }
