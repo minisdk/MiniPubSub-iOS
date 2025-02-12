@@ -9,12 +9,13 @@ import Foundation
 
 class MessageMediatorImpl : MessageMediator{
     
+    private let watcherKey = "Key_Watcher_Reserved"
     private var receiverDic: [String: [Receiver]]
-    private var watchers: [Receiver]
+    private var instantReceiverDic: [String: Receiver]
     
     init(){
         receiverDic = [:]
-        watchers = []
+        instantReceiverDic = [:]
     }
     
     func register(receiver: Receiver){
@@ -34,29 +35,28 @@ class MessageMediatorImpl : MessageMediator{
         }
     }
     
-    func watch(receiver: Receiver) {
-        watchers.append(receiver)
+    func registerInstantReceiver(receiver: Receiver) {
+        instantReceiverDic[receiver.key] = receiver
     }
     
-    func unwatch(id: Int) {
-        watchers.removeAll{ receiver in
-            receiver.nodeId == id
-        }
-    }
     
-    func publish(message: Message, publisherId: Int) {
-        let receivers = receiverDic[message.info.key]
+    func broadcast(request: Request) {
+        instantReceiverDic.removeValue(forKey: request.key)?.delegate(request)
+        
+        let receivers = receiverDic[request.info.key]
         receivers?.forEach{ receiver in
-            if(receiver.nodeId != publisherId){
-                receiver.delegate(message)
+            if(receiver.nodeId != request.info.nodeInfo.publisherId){
+                receiver.delegate(request)
             }
         }
         
-        watchers.forEach { receiver in
-            if(receiver.nodeId != publisherId){
-                receiver.delegate(message)
+        let watchers = receiverDic[watcherKey]
+        watchers?.forEach({ receiver in
+            if(receiver.nodeId != request.info.nodeInfo.publisherId){
+                receiver.delegate(request)
             }
-        }
+        })
+        
     }
     
 }

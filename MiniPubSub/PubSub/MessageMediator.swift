@@ -10,7 +10,6 @@ import Foundation
 protocol MessageMediator{
     func register(receiver: Receiver)
     func unregister(id: Int, key: String)
-    func publish(message: Message, publisherId: Int)
-    func watch(receiver: Receiver)
-    func unwatch(id: Int)
+    func registerInstantReceiver(receiver: Receiver)
+    func broadcast(request: Request)
 }

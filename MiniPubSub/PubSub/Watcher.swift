@@ -8,25 +8,19 @@
 import Foundation
 
 public class Watcher: Node{
-
-    private let publisher: Publisher
     
-    public var id: Int
+    private static let watcherKey = "Key_Watcher_Reserved"
     
-    init(){
-        self.publisher = Publisher()
-        self.id = self.publisher.id
+    public override init() {
+        
     }
     
     public func watch(delegate: @escaping ReceiverDelegate){
-        MessageManager.shared.mediator.watch(receiver: Receiver(nodeId: self.id, key: "", delegate: delegate))
+        MessageManager.shared.mediator.register(receiver: Receiver(nodeId: self.id, key: Watcher.watcherKey, delegate: delegate))
     }
 
     public func unwatch(){
-        MessageManager.shared.mediator.unwatch(id: self.id)
+        MessageManager.shared.mediator.unregister(id: self.id, key: Watcher.watcherKey)
     }
-    
-    public func publish(message: Message){
-        MessageManager.shared.mediator.publish(message: message, publisherId: self.id)
-    }
+
 }

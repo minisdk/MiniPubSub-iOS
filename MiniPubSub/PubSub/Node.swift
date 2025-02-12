@@ -7,7 +7,8 @@
 
 import Foundation
 
-public protocol Node{
-    var id: Int { get }
+public class Node{
+    private static let idCounter = IdConuter()
+    let id: Int = idCounter.getNext()
 }
 

@@ -10,14 +10,14 @@ import Foundation
 let encoder = JSONEncoder()
 let decoder = JSONDecoder()
 
-extension Message{
+extension Request{
     internal func encodeInfo() throws -> String?{
         return try! String(data: encoder.encode(self.info), encoding: .utf8)
         
     }
     
-    internal convenience init(infoJson: String, dataJson: String) throws{
-        let decoded = try! decoder.decode(MessageInfo.self, from: infoJson.data(using: .utf8)!)
+    internal init(infoJson: String, dataJson: String) throws{
+        let decoded = try! decoder.decode(RequestInfo.self, from: infoJson.data(using: .utf8)!)
         self.init(info: decoded, json: dataJson)
     }
 }

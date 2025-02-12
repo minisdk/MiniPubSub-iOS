@@ -7,27 +7,30 @@
 
 import Foundation
 
-public enum PublisherType : Int{
-    case android    = 10000
-    case iOS        = 20000
-    case game       = 30000
-}
-
-
 
 public class Publisher : Node{
-    private class IDConuter{
-        public static let shared = IDConuter()
-        private var id : Int = PublisherType.iOS.rawValue
-        public func getID() -> Int{
-            id+=1
-            return id
-        }
+    static let idCounter = IdConuter()
+        
+    public func publish(key: String, message: Message){
+        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
+        let request = Request(nodeInfo: nodeInfo, key: key, json: message.json, responseKey: "")
+        MessageManager.shared.mediator.broadcast(request: request)
     }
-    public var id: Int = IDConuter.shared.getID()
-
     
-    public func publish(message: Message){
-        MessageManager.shared.mediator.publish(message: message, publisherId: self.id)
+    public func publish(key: String, message: Message, responseCallback: @escaping ReceiverDelegate){
+        let responseKey = "\(key)_id\(Publisher.idCounter.getNext())"
+        
+        let receiver = Receiver(nodeId: -1, key: responseKey, delegate: responseCallback)
+        MessageManager.shared.mediator.registerInstantReceiver(receiver: receiver)
+        
+        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
+        let request = Request(nodeInfo: nodeInfo, key: key, json: message.json, responseKey: responseKey)
+        MessageManager.shared.mediator.broadcast(request: request)
+    }
+    
+    public func respond(responseInfo: ResponseInfo, message: Message){
+        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
+        let request = Request(nodeInfo: nodeInfo, key: responseInfo.key, json: message.json, responseKey: "")
+        MessageManager.shared.mediator.broadcast(request: request)
     }
 }
