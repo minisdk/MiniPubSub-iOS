@@ -17,23 +17,24 @@ struct ToastResult : Codable{
     let toastCount: Int;
 }
 
-@objc public class SampleKit : NSObject, ModuleBase{
-    @objc public func getName() -> String {
-        return "SampleKit"
-    }
+@objcMembers public class SampleKit : NSObject{
+    
+    public static let shared = SampleKit()
     
     let messenger: Messenger
     
     var toastCount = 0
-    public override init() {
+    private override init() {
         messenger = Messenger()
         super.init()
         
+    }
+    
+    public func prepare(){
         messenger.subscribe(key: "SEND_TOAST") { request in
             print("[pubsubtest] key : \(request.key) message : \(request.json)")
             
             let toastData: ToastData? = request.data()
-//            print("[pubsubtest] toast data message : \(toastData?.toastMessage ?? "??") and duration : \(toastData?.toastDuration ?? -1)")
             
             DispatchQueue.main.async{
                 let controller = self.topViewController()

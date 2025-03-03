@@ -64,6 +64,9 @@ if [ $mode = "$xcframeworkMode" ]; then
 elif [ $mode = "$embeddedMode" ]; then
     embeddedFramework=$target-$version.embeddedframework
     rm -rf ./$buildRoot/$embeddedFramework
-    cp -R ./$iosArchive/Products/Library/Frameworks/$target.framework ./$buildRoot/$embeddedFramework
-    zip -r ./$buildRoot/$embeddedFramework.zip ./$buildRoot/$embeddedFramework
+    mkdir ./$buildRoot/$embeddedFramework
+    cp -R ./$iosArchive/Products/Library/Frameworks/$target.framework ./$buildRoot/$embeddedFramework/$target.framework
+    cd $buildRoot
+    zip -r ./$embeddedFramework.zip ./$embeddedFramework/$target.framework
+    cd -
 fi
