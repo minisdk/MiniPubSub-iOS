@@ -83,7 +83,7 @@ final class MiniPubSubTests: XCTestCase {
         let reply = Reply(result: 1, resultDeco: "abc")
 //        let m = Message(key: "rp", data: reply)
 //        let d = m.serialize()
-        let m = Message(key:"rp", data: reply)
+        let m = Payload(key:"rp", data: reply)
         print("m.key : \(m.info.key)   m.dataJson : \(m.json)" )
         let d : Reply? = m.data()
         print("d.result : \(d?.result ?? -1) d.resultDeco : \(d?.resultDeco ?? "")")

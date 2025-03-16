@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias ReceiverDelegate = (Request) -> ()
+public typealias ReceiverDelegate = (Message) -> ()
 
 struct Receiver{
     let nodeId: Int

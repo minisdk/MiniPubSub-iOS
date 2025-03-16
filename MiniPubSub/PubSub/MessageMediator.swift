@@ -11,5 +11,5 @@ protocol MessageMediator{
     func register(receiver: Receiver)
     func unregister(id: Int, key: String)
     func registerInstantReceiver(receiver: Receiver)
-    func broadcast(request: Request)
+    func broadcast(message: Message)
 }

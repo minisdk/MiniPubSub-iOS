@@ -25,20 +25,20 @@ import Foundation
     }
     
     @objc public func send(info: String, data: String){
-        guard let request = try? Request(infoJson: info, dataJson: data) else{
-            print("Request decode error : " + info)
+        guard let message = try? Message(infoJson: info, dataJson: data) else{
+            print("Message decode error : " + info)
             return
         }
-        MessageManager.shared.mediator.broadcast(request: request)
+        MessageManager.shared.mediator.broadcast(message: message)
     }
     
-    private func onWatch(request: Request){
+    private func onWatch(message: Message){
         
-        guard let encoded = try? request.encodeInfo() else{
-            print("MessageInfo encode error : " + request.info.key)
+        guard let encoded = try? message.encodeInfo() else{
+            print("MessageInfo encode error : " + message.info.key)
             return
         }
-        callback.fromSwift(info: encoded, data: request.json)
+        callback.fromSwift(info: encoded, data: message.payload.json)
     }
 
 }

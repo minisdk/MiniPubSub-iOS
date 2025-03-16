@@ -30,7 +30,7 @@ public class PubSubTester{
 //            m2.publish(message: reply)
 //        }
         
-        let message = Message(key: "send_m1", data: 127)
+        let message = Payload(key: "send_m1", data: 127)
         m1.publish(message: message)
         
     }

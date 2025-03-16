@@ -11,26 +11,26 @@ import Foundation
 public class Publisher : Node{
     static let idCounter = IdConuter()
         
-    public func publish(key: String, message: Message){
-        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
-        let request = Request(nodeInfo: nodeInfo, key: key, json: message.json, responseKey: "")
-        MessageManager.shared.mediator.broadcast(request: request)
+    public func publish(key: String, payload: Payload){
+        let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
+        let message = Message(nodeInfo: nodeInfo, key: key, payload: payload, replyKey: "")
+        MessageManager.shared.mediator.broadcast(message: message)
     }
     
-    public func publish(key: String, message: Message, responseCallback: @escaping ReceiverDelegate){
-        let responseKey = "\(key)_id\(Publisher.idCounter.getNext())"
+    public func publish(key: String, payload: Payload, responseCallback: @escaping ReceiverDelegate){
+        let replyKey = "\(key)_id\(Publisher.idCounter.getNext())"
         
-        let receiver = Receiver(nodeId: -1, key: responseKey, delegate: responseCallback)
+        let receiver = Receiver(nodeId: -1, key: replyKey, delegate: responseCallback)
         MessageManager.shared.mediator.registerInstantReceiver(receiver: receiver)
         
-        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
-        let request = Request(nodeInfo: nodeInfo, key: key, json: message.json, responseKey: responseKey)
-        MessageManager.shared.mediator.broadcast(request: request)
+        let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
+        let message = Message(nodeInfo: nodeInfo, key: key, payload: payload, replyKey: replyKey)
+        MessageManager.shared.mediator.broadcast(message: message)
     }
     
-    public func respond(responseInfo: ResponseInfo, message: Message){
-        let nodeInfo = NodeInfo(requestOwnerId: id, publisherId: id)
-        let request = Request(nodeInfo: nodeInfo, key: responseInfo.key, json: message.json, responseKey: "")
-        MessageManager.shared.mediator.broadcast(request: request)
+    public func reply(received: MessageInfo, payload: Payload){
+        let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
+        let message = Message(nodeInfo: nodeInfo, key: received.replyKey, payload: payload, replyKey: "")
+        MessageManager.shared.mediator.broadcast(message: message)
     }
 }

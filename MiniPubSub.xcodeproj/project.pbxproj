@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C40C9D1B2D5A316000007BEB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C9D1A2D5A316000007BEB /* Request.swift */; };
+		C40C9D1B2D5A316000007BEB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C9D1A2D5A316000007BEB /* Message.swift */; };
 		C40C9D1D2D5B817600007BEB /* SdkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C9D1C2D5B817600007BEB /* SdkInfo.swift */; };
 		C41348D12C54FC9300F2C4F2 /* Watcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41348D02C54FC9300F2C4F2 /* Watcher.swift */; };
-		C43B5AF12C4D4BC100D1C9C1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B5AF02C4D4BC100D1C9C1 /* Message.swift */; };
+		C43B5AF12C4D4BC100D1C9C1 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B5AF02C4D4BC100D1C9C1 /* Payload.swift */; };
 		C43B5B482C5146B700D1C9C1 /* MiniPubSubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B5B472C5146B700D1C9C1 /* MiniPubSubTests.swift */; };
 		C43B5B492C5146B700D1C9C1 /* MiniPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B08F4B2B5A3E7A0082917E /* MiniPubSub.framework */; };
-		C44D30872CC9255700C97303 /* RequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D30862CC9255700C97303 /* RequestExtension.swift */; };
+		C44D30872CC9255700C97303 /* MessageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D30862CC9255700C97303 /* MessageExtension.swift */; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
 		C49F99652B5B7B1400047CAA /* GameRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* GameRelay.swift */; };
 		C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F99682B5B7EF000047CAA /* ObjcSide.m */; };
@@ -37,13 +37,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C40C9D1A2D5A316000007BEB /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C40C9D1A2D5A316000007BEB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C40C9D1C2D5B817600007BEB /* SdkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkInfo.swift; sourceTree = "<group>"; };
 		C41348D02C54FC9300F2C4F2 /* Watcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watcher.swift; sourceTree = "<group>"; };
-		C43B5AF02C4D4BC100D1C9C1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C43B5AF02C4D4BC100D1C9C1 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
 		C43B5B452C5146B700D1C9C1 /* MiniPubSubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniPubSubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43B5B472C5146B700D1C9C1 /* MiniPubSubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPubSubTests.swift; sourceTree = "<group>"; };
-		C44D30862CC9255700C97303 /* RequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestExtension.swift; sourceTree = "<group>"; };
+		C44D30862CC9255700C97303 /* MessageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageExtension.swift; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C49F99642B5B7B1400047CAA /* GameRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRelay.swift; sourceTree = "<group>"; };
 		C49F99672B5B7E9900047CAA /* ObjcSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcSide.h; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 		C43B5AF22C4D521300D1C9C1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C43B5AF02C4D4BC100D1C9C1 /* Message.swift */,
-				C40C9D1A2D5A316000007BEB /* Request.swift */,
+				C43B5AF02C4D4BC100D1C9C1 /* Payload.swift */,
+				C40C9D1A2D5A316000007BEB /* Message.swift */,
 				C40C9D1C2D5B817600007BEB /* SdkInfo.swift */,
 			);
 			path = Data;
@@ -127,7 +127,7 @@
 				C49F99642B5B7B1400047CAA /* GameRelay.swift */,
 				C49F99672B5B7E9900047CAA /* ObjcSide.h */,
 				C49F99682B5B7EF000047CAA /* ObjcSide.m */,
-				C44D30862CC9255700C97303 /* RequestExtension.swift */,
+				C44D30862CC9255700C97303 /* MessageExtension.swift */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -267,9 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C40C9D1D2D5B817600007BEB /* SdkInfo.swift in Sources */,
-				C44D30872CC9255700C97303 /* RequestExtension.swift in Sources */,
+				C44D30872CC9255700C97303 /* MessageExtension.swift in Sources */,
 				C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */,
-				C40C9D1B2D5A316000007BEB /* Request.swift in Sources */,
+				C40C9D1B2D5A316000007BEB /* Message.swift in Sources */,
 				C41348D12C54FC9300F2C4F2 /* Watcher.swift in Sources */,
 				C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */,
 				C49F99902B5CB1BF00047CAA /* Messenger.swift in Sources */,
@@ -277,7 +277,7 @@
 				C4E1B40E2C83624D00381FE8 /* Receiver.swift in Sources */,
 				C4B08F612B5A47520082917E /* Node.swift in Sources */,
 				C49F99652B5B7B1400047CAA /* GameRelay.swift in Sources */,
-				C43B5AF12C4D4BC100D1C9C1 /* Message.swift in Sources */,
+				C43B5AF12C4D4BC100D1C9C1 /* Payload.swift in Sources */,
 				C4E1B40C2C8361D100381FE8 /* Publisher.swift in Sources */,
 				C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */,
 			);

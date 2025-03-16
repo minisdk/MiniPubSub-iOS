@@ -1,34 +1,60 @@
-//  Message.swift
 //
+//  Message.swift
 //  MiniPubSub
 //
-//  Created by sangmin park on 7/21/24.
+//  Created by sangmin park on 2/10/25.
 //
 
 import Foundation
 
+public struct NodeInfo : Codable{
+    let messageOwnerId: Int
+    let publisherId: Int
+    
+    init(messageOwnerId: Int, publisherId: Int) {
+        self.messageOwnerId = messageOwnerId
+        self.publisherId = publisherId
+    }
+}
 
-public class Message{
+public struct MessageInfo : Codable{
+    let nodeInfo: NodeInfo
+    let key: String
+    let replyKey: String
     
-    public let json: String
+    var isResponsible : Bool {
+        return !replyKey.isEmpty
+    }
     
-//    public init(json: String){
-//        self.json = json
-//    }
+    init(nodeInfo: NodeInfo, key: String, replyKey: String) {
+        self.nodeInfo = nodeInfo
+        self.key = key
+        self.replyKey = replyKey
+    }
+}
+
+public struct Message{
+    public let info : MessageInfo
+    public let payload : Payload
     
-    public init<T: Codable>(data: T){
-        guard let encoded = try? JSONEncoder().encode(data) , let dataJson = String(data:encoded, encoding: .utf8) else{
-            self.json = ""
-            return
-        }
-        self.json = dataJson
-        
+    public var key: String{
+        return self.info.key
+    }
+    
+    init(info: MessageInfo, payload: Payload) {
+        self.info = info
+        self.payload = payload
+    }
+    
+    init(nodeInfo: NodeInfo, key: String, payload: Payload, replyKey: String){
+        self.init(
+            info: MessageInfo(nodeInfo: nodeInfo, key: key, replyKey: replyKey),
+            payload: payload
+        )
     }
     
     public func data<T: Codable>() -> T?{
-        guard let data = self.json.data(using: .utf8), let decoded = try? JSONDecoder().decode(T.self, from: data) else{
-            return nil
-        }
-        return decoded
+        return payload.data()
     }
+    
 }
