@@ -19,17 +19,13 @@ public struct NodeInfo : Codable{
 
 public struct MessageInfo : Codable{
     let nodeInfo: NodeInfo
-    let key: String
-    let replyKey: String
+    let topic: Topic
+    let replyTopic: Topic
     
-    var isResponsible : Bool {
-        return !replyKey.isEmpty
-    }
-    
-    init(nodeInfo: NodeInfo, key: String, replyKey: String) {
+    init(nodeInfo: NodeInfo, topic: Topic, replyTopic: Topic) {
         self.nodeInfo = nodeInfo
-        self.key = key
-        self.replyKey = replyKey
+        self.topic = topic
+        self.replyTopic = replyTopic
     }
 }
 
@@ -38,7 +34,7 @@ public struct Message{
     public let payload : Payload
     
     public var key: String{
-        return self.info.key
+        return self.info.topic.key
     }
     
     init(info: MessageInfo, payload: Payload) {
@@ -46,9 +42,9 @@ public struct Message{
         self.payload = payload
     }
     
-    init(nodeInfo: NodeInfo, key: String, payload: Payload, replyKey: String){
+    init(nodeInfo: NodeInfo, topic: Topic, replyTopic: Topic, payload: Payload){
         self.init(
-            info: MessageInfo(nodeInfo: nodeInfo, key: key, replyKey: replyKey),
+            info: MessageInfo(nodeInfo: nodeInfo, topic: topic, replyTopic: replyTopic),
             payload: payload
         )
     }

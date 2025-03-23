@@ -43,16 +43,16 @@ class MessageMediatorImpl : MessageMediator{
     func broadcast(message: Message) {
         instantReceiverDic.removeValue(forKey: message.key)?.delegate(message)
         
-        let receivers = receiverDic[message.info.key]
+        let receivers = receiverDic[message.info.topic.key]
         receivers?.forEach{ receiver in
-            if(receiver.nodeId != message.info.nodeInfo.publisherId){
+            if(receiver.canInvoke(info: message.info)){
                 receiver.delegate(message)
             }
         }
         
         let watchers = receiverDic[watcherKey]
         watchers?.forEach({ receiver in
-            if(receiver.nodeId != message.info.nodeInfo.publisherId){
+            if(receiver.canInvoke(info: message.info)){
                 receiver.delegate(message)
             }
         })

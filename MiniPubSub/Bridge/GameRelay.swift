@@ -13,7 +13,9 @@ import Foundation
 
 @objc public class GameRelay : NSObject{
     
-    //    private let bridgeMessenger : Bridge
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
+    
     private let watcher: Watcher
     private let callback : SwiftCallback
     
@@ -25,7 +27,7 @@ import Foundation
     }
     
     @objc public func send(info: String, data: String){
-        guard let message = try? Message(infoJson: info, dataJson: data) else{
+        guard let message = try? decodeInfo(infoJson: info, dataJson: data) else{
             print("Message decode error : " + info)
             return
         }
@@ -34,11 +36,23 @@ import Foundation
     
     private func onWatch(message: Message){
         
-        guard let encoded = try? message.encodeInfo() else{
-            print("MessageInfo encode error : " + message.info.key)
+        guard let encoded = try? encodeInfo(message: message) else{
+            print("MessageInfo encode error : " + message.info.topic.key)
             return
         }
         callback.fromSwift(info: encoded, data: message.payload.json)
     }
+    
+    private func encodeInfo(message: Message) throws -> String?{
+        return try! String(data: encoder.encode(message.info), encoding: .utf8)
+    }
+    
+    private func decodeInfo(infoJson: String, dataJson: String) throws -> Message {
+        let decoded = try! decoder.decode(MessageInfo.self, from: infoJson.data(using: .utf8)!)
+        let nodeInfo = NodeInfo(messageOwnerId: decoded.nodeInfo.messageOwnerId, publisherId: watcher.id)
+        let modified = MessageInfo(nodeInfo: nodeInfo, topic: decoded.topic, replyTopic: decoded.replyTopic)
+        return Message(info: modified, payload: Payload(json: dataJson))
+    }
+        
 
 }

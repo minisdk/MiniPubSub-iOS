@@ -44,7 +44,7 @@ struct ToastResult : Codable{
                 
                 self.toastCount += 1
                 let result = ToastResult(toastCount: self.toastCount)
-                self.messenger.publish(key: "SEND_TOAST_RESULT", payload: Payload(data: result))
+                self.messenger.publish(topic: Topic(key: "SEND_TOAST_RESULT", target: SdkType.game), payload: Payload(data: result))
             }
         }
         

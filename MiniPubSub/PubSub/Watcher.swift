@@ -11,12 +11,14 @@ public class Watcher: Node{
     
     private static let watcherKey = "Key_Watcher_Reserved"
     
-    public override init() {
-        
+    private let target: SdkType
+    
+    public init(target: SdkType = .native) {
+        self.target = target
     }
     
     public func watch(delegate: @escaping ReceiverDelegate){
-        MessageManager.shared.mediator.register(receiver: Receiver(nodeId: self.id, key: Watcher.watcherKey, delegate: delegate))
+        MessageManager.shared.mediator.register(receiver: Receiver(nodeId: self.id, key: Watcher.watcherKey, target: self.target, delegate: delegate))
     }
 
     public func unwatch(){

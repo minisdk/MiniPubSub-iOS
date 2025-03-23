@@ -11,26 +11,25 @@ import Foundation
 public class Publisher : Node{
     static let idCounter = IdConuter()
         
-    public func publish(key: String, payload: Payload){
+    public func publish(topic: Topic, payload: Payload){
         let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
-        let message = Message(nodeInfo: nodeInfo, key: key, payload: payload, replyKey: "")
+        let message = Message(nodeInfo: nodeInfo, topic: topic, replyTopic: Topic.default, payload: payload)
         MessageManager.shared.mediator.broadcast(message: message)
     }
     
-    public func publish(key: String, payload: Payload, responseCallback: @escaping ReceiverDelegate){
-        let replyKey = "\(key)_id\(Publisher.idCounter.getNext())"
+    public func publish(topic: Topic, payload: Payload, responseCallback: @escaping ReceiverDelegate){
+        let replyKey = "\(topic.key)_id\(Publisher.idCounter.getNext())"
+        let replyTopic = Topic(key: replyKey, target: SdkType.native)
         
-        let receiver = Receiver(nodeId: -1, key: replyKey, delegate: responseCallback)
+        let receiver = Receiver(nodeId: -1, key: replyKey, target: SdkType.native, delegate: responseCallback)
         MessageManager.shared.mediator.registerInstantReceiver(receiver: receiver)
         
         let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
-        let message = Message(nodeInfo: nodeInfo, key: key, payload: payload, replyKey: replyKey)
+        let message = Message(nodeInfo: nodeInfo, topic: topic, replyTopic: replyTopic, payload: payload)
         MessageManager.shared.mediator.broadcast(message: message)
     }
     
     public func reply(received: MessageInfo, payload: Payload){
-        let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
-        let message = Message(nodeInfo: nodeInfo, key: received.replyKey, payload: payload, replyKey: "")
-        MessageManager.shared.mediator.broadcast(message: message)
+        self.publish(topic: received.replyTopic, payload: payload)
     }
 }

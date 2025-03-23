@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum SdkType : Int{
+public enum SdkType : Int, Codable{
     case native     = 0
     case game       = 1
 }
