@@ -17,7 +17,7 @@ public class Watcher: Node{
         self.target = target
     }
     
-    public func watch(delegate: @escaping ReceiverDelegate){
+    public func watch(delegate: @escaping ReceiveDelegate){
         MessageManager.shared.mediator.register(receiver: Receiver(nodeId: self.id, key: Watcher.watcherKey, target: self.target, delegate: delegate))
     }
 

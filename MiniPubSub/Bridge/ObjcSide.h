@@ -25,7 +25,10 @@ typedef void (*NativeMessageCallback)(const char* infoCStr, const char* dataCStr
 +(instancetype) sharedInstance;
 
 -(void) initializeWith: (NativeMessageCallback) messageCallback;
--(void) sendToNativeWithInfo: (const char*) infoCStr AndData: (const char*) dataCStr;
+-(void) sendToNativeWithInfo: (const char*) infoCStr andData: (const char*) dataCStr;
+-(const char*) sendSyncToNativeWithInfo: (const char*) infoCStr andData: (const char*) dataCStr;
+-(void) freeCString: (const char*) ptr;
+
 @end
 
 #endif /* ObjcSide_h */

@@ -12,4 +12,7 @@ protocol MessageMediator{
     func unregister(id: Int, key: String)
     func registerInstantReceiver(receiver: Receiver)
     func broadcast(message: Message)
+    func handle(key: String, handler: Handler)
+    func handle(target: SdkType, handler: Handler)
+    func sendSync(message: Message) -> Payload
 }

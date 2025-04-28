@@ -1,19 +1,19 @@
 //
-//  Receiver.swift
+//  Handler.swift
 //  MiniPubSub
 //
-//  Created by sangmin park on 8/31/24.
+//  Created by sangmin park on 4/28/25.
 //
 
 import Foundation
 
-public typealias ReceiveDelegate = (Message) -> ()
+public typealias HandleDelegate = (Message) -> Payload
 
-struct Receiver{
+struct Handler{
     let nodeId: Int
     let key: String
     let target: SdkType
-    let delegate: ReceiveDelegate
+    let delegate: HandleDelegate
     
     func canInvoke(info: MessageInfo) -> Bool{
         return nodeId != info.nodeInfo.publisherId && target == info.topic.target

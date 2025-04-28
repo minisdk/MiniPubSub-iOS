@@ -24,11 +24,26 @@
     self->messageCallback = messageCallback;
 }
 
-- (void)sendToNativeWithInfo:(const char *)infoCStr AndData:(const char *)dataCStr {
+- (void)sendToNativeWithInfo:(const char *)infoCStr andData:(const char *)dataCStr {
     NSString *messageInfo = [[NSString alloc] initWithUTF8String:infoCStr];
     NSString *messageJson = [[NSString alloc] initWithUTF8String:dataCStr];
     [gameRelay sendWithInfo:messageInfo data:messageJson];
 }
+
+- (const char *)sendSyncToNativeWithInfo:(const char *)infoCStr andData:(const char *)dataCStr {
+    NSString *messageInfo = [[NSString alloc] initWithUTF8String:infoCStr];
+    NSString *messageJson = [[NSString alloc] initWithUTF8String:dataCStr];
+    NSString *result = [gameRelay sendSyncWithInfo:messageInfo data:messageJson];
+    const char* copied = strdup([result UTF8String]);
+    return copied;
+}
+
+- (void)freeCString:(const char *)ptr {
+    if(ptr){
+        free((void*) ptr);
+    }
+}
+
 
 - (void)fromSwiftWithInfo:(NSString * _Nonnull)infoStr data:(NSString * _Nonnull)dataStr {
     self->messageCallback([infoStr UTF8String], [dataStr UTF8String]);

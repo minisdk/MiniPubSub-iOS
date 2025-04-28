@@ -21,9 +21,12 @@ import Foundation
     
     @objc public init(callback: SwiftCallback){
         self.callback = callback
-        self.watcher = Watcher()
+        self.watcher = Watcher(target: .game)
         super.init()
         self.watcher.watch(delegate: onWatch)
+        
+        let handler = Handler(nodeId: watcher.id, key: "", target: .game, delegate: onHandle)
+        MessageManager.shared.mediator.handle(target: handler.target, handler: handler)
     }
     
     @objc public func send(info: String, data: String){
@@ -32,6 +35,20 @@ import Foundation
             return
         }
         MessageManager.shared.mediator.broadcast(message: message)
+    }
+    
+    @objc public func sendSync(info: String, data: String) -> String{
+        guard let message = try? decodeInfo(infoJson: info, dataJson: data) else{
+            print("Message decode error : " + info)
+            return "{}"
+        }
+        let resultPayload = MessageManager.shared.mediator.sendSync(message: message)
+        return resultPayload.json
+    }
+    
+    private func onHandle(message: Message) -> Payload{
+        //TODO: Rare case - call synchronously from native to game
+        return Payload(json: "{}")
     }
     
     private func onWatch(message: Message){

@@ -14,6 +14,7 @@
 		C43B5B482C5146B700D1C9C1 /* MiniPubSubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B5B472C5146B700D1C9C1 /* MiniPubSubTests.swift */; };
 		C43B5B492C5146B700D1C9C1 /* MiniPubSub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B08F4B2B5A3E7A0082917E /* MiniPubSub.framework */; };
 		C4475BB12D8FF61300B68CCE /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4475BB02D8FF61300B68CCE /* Topic.swift */; };
+		C4475BB32DBFB5F800B68CCE /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4475BB22DBFB5F800B68CCE /* Handler.swift */; };
 		C49F995D2B5A508200047CAA /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F995C2B5A508200047CAA /* MessageManager.swift */; };
 		C49F99652B5B7B1400047CAA /* GameRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F99642B5B7B1400047CAA /* GameRelay.swift */; };
 		C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */ = {isa = PBXBuildFile; fileRef = C49F99682B5B7EF000047CAA /* ObjcSide.m */; };
@@ -44,6 +45,7 @@
 		C43B5B452C5146B700D1C9C1 /* MiniPubSubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MiniPubSubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43B5B472C5146B700D1C9C1 /* MiniPubSubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPubSubTests.swift; sourceTree = "<group>"; };
 		C4475BB02D8FF61300B68CCE /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		C4475BB22DBFB5F800B68CCE /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 		C49F995C2B5A508200047CAA /* MessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		C49F99642B5B7B1400047CAA /* GameRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRelay.swift; sourceTree = "<group>"; };
 		C49F99672B5B7E9900047CAA /* ObjcSide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcSide.h; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				C41348D02C54FC9300F2C4F2 /* Watcher.swift */,
 				C4E1B40B2C8361D100381FE8 /* Publisher.swift */,
 				C4E1B40D2C83624D00381FE8 /* Receiver.swift */,
+				C4475BB22DBFB5F800B68CCE /* Handler.swift */,
 			);
 			path = PubSub;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				C40C9D1D2D5B817600007BEB /* SdkInfo.swift in Sources */,
 				C4475BB12D8FF61300B68CCE /* Topic.swift in Sources */,
 				C49F99692B5B7EF000047CAA /* ObjcSide.m in Sources */,
+				C4475BB32DBFB5F800B68CCE /* Handler.swift in Sources */,
 				C40C9D1B2D5A316000007BEB /* Message.swift in Sources */,
 				C41348D12C54FC9300F2C4F2 /* Watcher.swift in Sources */,
 				C4B08F642B5A49D40082917E /* MessageMediator.swift in Sources */,

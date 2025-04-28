@@ -12,10 +12,14 @@ class MessageMediatorImpl : MessageMediator{
     private let watcherKey = "Key_Watcher_Reserved"
     private var receiverDic: [String: [Receiver]]
     private var instantReceiverDic: [String: Receiver]
+    private var handlerDic: [String: Handler]
+    private var targetHandlerDic: [SdkType: Handler]
     
     init(){
         receiverDic = [:]
         instantReceiverDic = [:]
+        handlerDic = [:]
+        targetHandlerDic = [:]
     }
     
     func register(receiver: Receiver){
@@ -57,6 +61,28 @@ class MessageMediatorImpl : MessageMediator{
             }
         })
         
+    }
+    
+    func handle(key: String, handler: Handler) {
+        handlerDic[key] = handler
+    }
+    
+    func handle(target: SdkType, handler: Handler) {
+        targetHandlerDic[target] = handler
+    }
+    
+    func sendSync(message: Message) -> Payload {
+        if let handler = handlerDic[message.key]{
+            if(handler.canInvoke(info: message.info)){
+                return handler.delegate(message)
+            }
+        }
+        if let targetHandler = targetHandlerDic[message.info.topic.target]{
+            if(targetHandler.canInvoke(info: message.info)){
+                return targetHandler.delegate(message)
+            }
+        }
+        return Payload(json: "{}")
     }
     
 }

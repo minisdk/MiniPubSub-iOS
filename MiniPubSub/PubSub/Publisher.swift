@@ -17,7 +17,7 @@ public class Publisher : Node{
         MessageManager.shared.mediator.broadcast(message: message)
     }
     
-    public func publish(topic: Topic, payload: Payload, responseCallback: @escaping ReceiverDelegate){
+    public func publish(topic: Topic, payload: Payload, responseCallback: @escaping ReceiveDelegate){
         let replyKey = "\(topic.key)_id\(Publisher.idCounter.getNext())"
         let replyTopic = Topic(key: replyKey, target: SdkType.native)
         
@@ -31,5 +31,11 @@ public class Publisher : Node{
     
     public func reply(received: MessageInfo, payload: Payload){
         self.publish(topic: received.replyTopic, payload: payload)
+    }
+    
+    public func sendSync(topic: Topic, payload: Payload) -> Payload{
+        let nodeInfo = NodeInfo(messageOwnerId: id, publisherId: id)
+        let message = Message(nodeInfo: nodeInfo, topic: topic, replyTopic: Topic.default, payload: payload)
+        return MessageManager.shared.mediator.sendSync(message: message)
     }
 }
