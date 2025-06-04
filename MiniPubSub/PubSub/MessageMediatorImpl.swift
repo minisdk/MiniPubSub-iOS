@@ -24,6 +24,9 @@ class MessageMediatorImpl : MessageMediator{
     
     func register(receiver: Receiver){
         if var receivers = receiverDic[receiver.key]{
+            receivers.removeAll { element in
+                element.nodeId == receiver.nodeId
+            }
             receivers.append(receiver)
         }
         else{
