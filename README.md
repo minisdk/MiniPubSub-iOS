@@ -2,6 +2,11 @@
 iOS와 게임 엔진 간 통신을 위한 pubsub 방식의 라이브러리입니다.
 직렬화된 데이터를 발행하여 사전 등록된 구독자들에게 전달합니다.
 
+## 같이 보기
+- [MiniPubSub-Android](https://github.com/minisdk/MiniPubSub-Android)
+- [MiniPubSub-Unity](https://github.com/minisdk/MiniPubSub-Unity)
+- [MiniPubSub-Unreal](https://github.com/minisdk/MiniPubSub-Unreal)
+  
 ## 시작하기
 [Release](https://github.com/minisdk/MiniPubSub-iOS/releases) 에서 framework를 다운 받아 프로젝트에 임포트합니다.
 
