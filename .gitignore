@@ -103,3 +103,6 @@ Pods/
 # End of https://www.toptal.com/developers/gitignore/api/cocoapods
 
 .DS_Store
+
+deploy*
+!deployFrameworks.sh

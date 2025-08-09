@@ -6,36 +6,99 @@
 //
 
 import Foundation
-import iOSPubSub
+import MiniPubSub
+import UIKit
 
-class SampleKit{
+struct ToastData : Codable{
+    let toastMessage: String;
+    let toastDuration: Int;
+}
+struct ToastResult : Codable{
+    let toastCount: Int;
+}
+
+@objcMembers public class SampleKit : NSObject{
+    
+    public static let shared = SampleKit()
     
     let messenger: Messenger
     
-    init() {
+    var toastCount = 0
+    private override init() {
         messenger = Messenger()
-        messenger.setBasePublishingTag(Tag.game)
-        messenger.subscribe(key: "test", handler: onTest)
-        messenger.subscribe(key: "testRecall", handler: onTestRecall)
+        super.init()
+        
     }
     
-    func onTest(message: Message){
-        print("onTest : " + message.key);
-        
-        var container = Container()
-        container.add(key: "data", value: "this is iOS message :D")
-        let message = Message(key: "native", container: container)
-        messenger.publish(message: message)
-    }
-    func onTestRecall(message: Message){
-        let data = message.container.getString(key: "data") ?? "no data....?"
-        print("onTestRecall : " + data);
-        
-        var container = Container()
-        container.add(key: "data", value: ("RECALL iOS => " + data))
-        let reply = Message(key: "testReturn", container: container)
-        messenger.publish(message: reply)
+    public func prepare(){
+        messenger.subscribe(key: "SEND_TOAST", delegate: onSendToast)
+        messenger.subscribe(key: "SEND_TOAST_ASYNC", delegate: onSendToastAsync)
+        messenger.handle(key: "SEND_TOAST_SYNC", delegate: onSendToastSync)
     }
     
+    private func onSendToast(message: Message){
+        print("[pubsubtest] key : \(message.key) message : \(message.payload.json)")
+        
+        let toastData: ToastData? = message.data()
+        
+        DispatchQueue.main.async{
+            let controller = self.topViewController()
+            let alert = UIAlertController(title : message.key, message: toastData?.toastMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+            controller?.present(alert, animated: true, completion: nil)
+            
+            self.toastCount += 1
+            let result = ToastResult(toastCount: self.toastCount)
+            self.messenger.publish(topic: Topic(key: "SEND_TOAST_RESULT", target: SdkType.game), payload: Payload(data: result))
+        }
+    }
+    
+    private func onSendToastAsync(message: Message){
+        print("[pubsubtest] key : \(message.key) message : \(message.payload.json)")
+        
+        let toastData: ToastData? = message.data()
+        
+        DispatchQueue.main.async{
+            let controller = self.topViewController()
+            let alert = UIAlertController(title : message.key, message: toastData?.toastMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+            controller?.present(alert, animated: true, completion: nil)
+            
+            self.toastCount += 1
+            
+            let result = ToastResult(toastCount: self.toastCount)
+            self.messenger.reply(received: message.info, payload: Payload(data: result))
+        }
+    }
+    
+    private func onSendToastSync(message: Message) -> Payload{
+        print("[pubsubtest] key : \(message.key) message : \(message.payload.json)")
+        
+        let toastData: ToastData? = message.data()
+        
+        DispatchQueue.main.async{
+            let controller = self.topViewController()
+            let alert = UIAlertController(title : message.key, message: toastData?.toastMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+            controller?.present(alert, animated: true, completion: nil)
+        }
+        
+        self.toastCount += 1
+        let result = ToastResult(toastCount: self.toastCount)
+        return Payload(data: result)
+    }
+    
+    func topViewController(controller: UIViewController? = UIApplication.shared.windows.first?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabBarController = controller as? UITabBarController {
+            return topViewController(controller: tabBarController.selectedViewController)
+        }
+        if let presentedController = controller?.presentedViewController {
+            return topViewController(controller: presentedController)
+        }
+        return controller
+    }
     
 }
